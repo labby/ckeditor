@@ -27,8 +27,8 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-$module_directory	= 'ckeditor';
-$module_name		= 'CKEditor';
+$module_directory	= 'ckeditor_4';
+$module_name		= 'CKEditor-4';
 $module_function	= 'WYSIWYG';
 $module_version		= '4.1.1.0';
 $module_platform	= '2.x';
