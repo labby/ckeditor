@@ -3,7 +3,7 @@
 This project is the implantation of the CK-Editor on the 4.x series for the Lepton-CMS 2.x series.
 We are not planing to build a ckeditor 4 module for the L* 1.x series, as we're using core-constructions of the L* 2.x one.
 
-If you want to use the CK-Editor within a Lepton-CMS >= 1.2.2 we recomented to use the official one from the Lepton-CMS website (CKE 3.6.3).
+If you want to use the CK-Editor within a Lepton-CMS <= 1.2.3 we recomented to use the official one from the Lepton-CMS website (CKE 3.6.3).
 
 Kind regards
 
