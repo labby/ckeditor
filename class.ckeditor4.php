@@ -27,8 +27,10 @@ class ckeditor
 	
 	public $ckeditor_file = "";
 	
+	private $script_loaded = false;
+	
 	public function __construct() {
-		$this->ckeditor_file = LEPTON_URL."/modules/ckeditor_4/ckeditor/ckeditor.js";
+		
 	}
 	
 	public function __destruct() {
@@ -55,7 +57,11 @@ class ckeditor
 	}
 	
 	private function __build_script() {
-		$s = "\n<script type='text/javascript' src='".$this->ckeditor_file."'></script>\n";
+		$s = "";
+		if (false == $this->script_loaded) {
+			$s .= "\n<script type='text/javascript' src='".$this->ckeditor_file."'></script>\n";
+			$this->script_loaded = true;
+		}
 		$s .= "
 		<script>
 		CKEDITOR.replace( '". $this->config['id']. "');

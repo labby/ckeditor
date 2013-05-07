@@ -35,6 +35,12 @@ require_once( dirname(__FILE__)."/class.ckeditor4.php");
 $ckeditor = new ckeditor();
 
 /**
+ *	Absolute path to the ck-editor basic script.
+ *
+ */
+$ckeditor->ckeditor_file = LEPTON_URL."/modules/ckeditor_4/ckeditor/ckeditor.js";
+
+/**
  *	Function called by parent, default by the wysiwyg-module
  *	
  *	@param	string	The name of the textarea to watch
@@ -51,7 +57,7 @@ function show_wysiwyg_editor($name, $id, $content, $width = '100%', $height = '2
 	$ckeditor->config['height'] = $height;
 	$ckeditor->config['id'] = $id;
 	$ckeditor->config['name'] = $name;
-	$ckeditor->config['content'] = $content;
+	$ckeditor->config['content'] = htmlspecialchars_decode($content);
 	
 	echo $ckeditor->toHTML();
 }
