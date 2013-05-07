@@ -20,7 +20,8 @@ class ckeditor
 		'height' => "250px",
 		'content' => "",
 		'id'	=> '',
-		'name'	=> ''
+		'name'	=> '(no name)',
+		'language' => 'en'
 	);
 	
 	public $textarea = "\n<textarea name='%s' id='%s' width='%s' height='%s' cols='8' rows='8'>%s</textarea>\n";
@@ -64,6 +65,7 @@ class ckeditor
 		}
 		$s .= "
 		<script>
+		CKEDITOR.config['language'] = '". $this->config['language']."';
 		CKEDITOR.replace( '". $this->config['id']. "');
 		</script>
 		";
