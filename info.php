@@ -43,7 +43,5 @@ $module_home		= 'http://www.lepton-cms.org';
  *	Detailed changelog: see the commits on github at
  *	https://github.com/CKE-Addon/ckeditor_4/commits/master
  *
- *	Or the brief one inside this module.
- *
  */
 ?>
