@@ -47,6 +47,12 @@ $ckeditor->ckeditor_file = LEPTON_URL."/modules/ckeditor_4/ckeditor/ckeditor.js"
 $ckeditor->config['language'] = strtolower( LANGUAGE );
 
 /**
+ *	Embedd frontend css
+ *
+ */
+$ckeditor->config['contentsCss'] = '';
+
+/**
  *	Function called by parent, default by the wysiwyg-module
  *	
  *	@param	string	The name of the textarea to watch

@@ -30,9 +30,9 @@ if (defined('WB_PATH')) {
 $module_directory	= 'ckeditor_4';
 $module_name		= 'CKEditor-4';
 $module_function	= 'WYSIWYG';
-$module_version		= '4.1.1.0';
+$module_version		= '4.1.1.1';
 $module_platform	= '2.x';
-$module_author		= 'erpe,Dietrich Roland Pehlke';
+$module_author		= 'erpe, Dietrich Roland Pehlke (Aldus)';
 $module_license		= '<a target="_blank" href="http://www.gnu.org/licenses/lgpl.html">LGPL</a>';
 $module_license_terms = '-';
 $module_description = 'includes CKEditor 4.1.1,CKE allows editing content and can be integrated in frontend and backend modules.';
@@ -40,17 +40,10 @@ $module_guid 		= '613AF469-9EE6-40AB-B91A-AC308791D64C';
 $module_home		= 'http://www.lepton-cms.org';
 
 /**
+ *	Detailed changelog: see the commits on github at
+ *	https://github.com/CKE-Addon/ckeditor_4/commits/master
  *
- *	4.1.1.0 	2013-04-23 - update CK-Editor to 4.1.1.
+ *	Or the brief one inside this module.
  *
- *	4.1.0.0 	2013-03-22 - update CK-Editor to 4.1.0.
- *
- *	4.0.2.0 	2013-03-06 - update CK-Editor to 4.0.2. 
- *
- *	4.0.1.0 	2013-01-09 - update CK-Editor to 4.0.1.
- * 
- *	4.0.0.0 	2012-11-27 - start CK-Editor 4.0.0.
- *
- */	
-
+ */
 ?>
