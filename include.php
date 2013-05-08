@@ -41,13 +41,19 @@ $ckeditor = new ckeditor();
 $ckeditor->ckeditor_file = LEPTON_URL."/modules/ckeditor_4/ckeditor/ckeditor.js";
 
 /**
+ *	Custom config-file
+ *
+ */
+$ckeditor->config['customConfig'] = "";
+ 
+/**
  *	Language
  *
  */
 $ckeditor->config['language'] = strtolower( LANGUAGE );
 
 /**
- *	Embedd frontend css
+ *	Load the frontend css
  *
  */
 $ckeditor->config['contentsCss'] = '';
@@ -69,7 +75,7 @@ function show_wysiwyg_editor($name, $id, $content, $width = '100%', $height = '2
 	$ckeditor->config['height'] = $height;
 	$ckeditor->config['id'] = $id;
 	$ckeditor->config['name'] = $name;
-	$ckeditor->config['content'] = htmlspecialchars_decode($content);
+	$ckeditor->config['content'] = $content;
 	
 	echo $ckeditor->toHTML();
 }

@@ -25,18 +25,7 @@ class ckeditor
 		'contentsCss' => '',
 		'customConfig' => ''
 	);
-	
-	/**
-	 *	@var	array	Assocc. array that holds the enties to be restored
-	 *
-	 */
-	private $lookup_html = array(
-		'&gt;'	=> ">",
-		'&lt;'	=> "<",
-		'&quot;' => "\"",
-		'&amp;'	 => "&"
-	);
-	
+		
 	/**
 	 *	@var	array	More-dimensional array for the 'look-up' paths for
 	 *					editor.css, editor.style.js, templates.js and the config.js
@@ -123,7 +112,7 @@ class ckeditor
 			$this->config['id'],
 			$this->config['width'],
 			$this->config['height'],
-			$this->config['content']
+			htmlspecialchars_decode( $this->config['content'] )
 		);
 	}
 	
