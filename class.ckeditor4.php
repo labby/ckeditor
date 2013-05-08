@@ -22,7 +22,8 @@ class ckeditor
 		'id'	=> '',
 		'name'	=> '(no name)',
 		'language' => 'en',
-		'contentsCss' => ''
+		'contentsCss' => '',
+		'customConfig' => ''
 	);
 	
 	/**
@@ -136,7 +137,7 @@ class ckeditor
 		<script>
 		CKEDITOR.config['contentsCss'] = '".$this->config['contentsCss']."';
 		CKEDITOR.config['language'] = '". $this->config['language']."';
-		CKEDITOR.replace( '". $this->config['id']. "');
+		CKEDITOR.replace( '". $this->config['id']. "', { customConfig: '". $this->config['customConfig']."' } );
 		</script>
 		";
 		
