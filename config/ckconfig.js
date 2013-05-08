@@ -94,6 +94,9 @@ CKEDITOR.editorConfig = function( config )
     *  Uncommenting this line doesn't mean the user will not be able to type PHP code in the source.
     *  This kind of prevention must be done in the server side, so just leave this line as is. */ 
     config.protectedSource.push(/<\?[\s\S]*?\?>/g); // PHP Code
+    
+    config.entities_latin = false;
+
 };
 
 CKEDITOR.on( 'instanceReady', function( ev )
