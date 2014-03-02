@@ -122,14 +122,38 @@ class ckeditor
 			$s .= "\n<script type='text/javascript' src='".$this->ckeditor_file."'></script>\n";
 			$this->script_loaded = true;
 		}
-		$s .= "
+/*		$s .= "
 		<script>
 		CKEDITOR.config['contentsCss'] = '".$this->config['contentsCss']."';
 		CKEDITOR.config['language'] = '". $this->config['language']."';
 		CKEDITOR.replace( '". $this->config['id']. "', { customConfig: '". $this->config['customConfig']."' } );
 		</script>
 		";
+*/
+		$s .= "
+			<script>
+		";
+		$fields = array(
+		'width',
+		'height',
+		'id',
+		'name',
+		'language',
+		'contentsCss',
+		'customConfig',
+		'filebrowserBrowseUrl',
+		'filebrowserImageBrowseUrl',
+		'filebrowserFlashBrowseUrl'
+		);
 		
+		foreach( $fields as $key ) {
+			$s .= "CKEDITOR.config['".$key."'] = '".$this->config[$key]."';\n";
+		}
+		
+		$s .= "CKEDITOR.replace( '". $this->config['id']. "', { customConfig: '". $this->config['customConfig']."' } );
+		</script>
+		";
+
 		return $s;
 	}
 }
