@@ -38,6 +38,7 @@ $ckeditor = new ckeditor();
  *	Absolute path to the ck-editor basic script.
  *
  */
+if (!defined("LEPTON_URL")) define("LEPTON_URL", WB_URL);
 $ckeditor->ckeditor_file = LEPTON_URL."/modules/ckeditor_4/ckeditor/ckeditor.js";
 
 /**
