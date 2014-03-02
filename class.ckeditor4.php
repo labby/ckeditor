@@ -133,6 +133,7 @@ class ckeditor
 		 *	Maybe the right place to customize for own plugins ...
 		 */
 		$fields = array(
+			'skin',
 			'width',
 			'height',
 			'id',
@@ -142,7 +143,11 @@ class ckeditor
 			'customConfig',
 			'filebrowserBrowseUrl',
 			'filebrowserImageBrowseUrl',
-			'filebrowserFlashBrowseUrl'
+			'filebrowserFlashBrowseUrl',
+			'uploader',
+			'filebrowserUploadUrl',
+			'filebrowserImageUploadUrl',
+			'filebrowserFlashUploadUrl'
 		);
 		
 		foreach( $fields as $key ) {

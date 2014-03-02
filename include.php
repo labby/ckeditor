@@ -59,16 +59,29 @@ $ckeditor->config['language'] = strtolower( LANGUAGE );
  */
 $ckeditor->config['contentsCss'] = '';
 
-	/**
-	 *	The filebrowser are called in the include, because later on we can make switches, use WB_URL and so on
-	 *
-	 */
-	$ckeditor->basePath = LEPTON_URL."/modules/ckeditor_4/ckeditor/";
-	
-	$connectorPath = $ckeditor->basePath.'filemanager/connectors/php/connector.php';
-	$ckeditor->config['filebrowserBrowseUrl'] = $ckeditor->basePath.'filemanager/browser/default/browser.html?Connector='.$connectorPath;
-	$ckeditor->config['filebrowserImageBrowseUrl'] = $ckeditor->basePath.'filemanager/browser/default/browser.html?Type=Image&Connector='.$connectorPath;
-	$ckeditor->config['filebrowserFlashBrowseUrl'] = $ckeditor->basePath.'filemanager/browser/default/browser.html?Type=Flash&Connector='.$connectorPath;
+/**
+ *	Skin
+ *
+ */
+$ckeditor->config['skin'] = 'moono'; # 'moonocolor';
+
+/**
+ *	The filebrowser are called in the include, because later on we can make switches, use WB_URL and so on
+ *
+ */
+$ckeditor->basePath = LEPTON_URL."/modules/ckeditor_4/ckeditor/";
+
+$connectorPath = $ckeditor->basePath.'filemanager/connectors/php/connector.php';
+$ckeditor->config['filebrowserBrowseUrl'] = $ckeditor->basePath.'filemanager/browser/default/browser.html?Connector='.$connectorPath;
+$ckeditor->config['filebrowserImageBrowseUrl'] = $ckeditor->basePath.'filemanager/browser/default/browser.html?Type=Image&Connector='.$connectorPath;
+$ckeditor->config['filebrowserFlashBrowseUrl'] = $ckeditor->basePath.'filemanager/browser/default/browser.html?Type=Flash&Connector='.$connectorPath;
+
+$ckeditor->config['uploader'] = true;
+
+$uploadPath = $ckeditor->basePath.'filemanager/connectors/php/upload.php?Type=';
+$ckeditor->config['filebrowserUploadUrl'] = $uploadPath.'File';
+$ckeditor->config['filebrowserImageUploadUrl'] = $uploadPath.'Image';
+$ckeditor->config['filebrowserFlashUploadUrl'] = $uploadPath.'Flash';
 
 /**
  *	Function called by parent, default by the wysiwyg-module
