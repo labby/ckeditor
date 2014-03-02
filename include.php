@@ -45,7 +45,7 @@ $ckeditor->ckeditor_file = LEPTON_URL."/modules/ckeditor_4/ckeditor/ckeditor.js"
  *	Custom config-file
  *
  */
-$ckeditor->config['customConfig'] = "";
+$ckeditor->config['customConfig'] = LEPTON_URL."/modules/ckeditor_4/config/ckconfig.js";
  
 /**
  *	Language
