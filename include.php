@@ -59,6 +59,17 @@ $ckeditor->config['language'] = strtolower( LANGUAGE );
  */
 $ckeditor->config['contentsCss'] = '';
 
+	/**
+	 *	The filebrowser are called in the include, because later on we can make switches, use WB_URL and so on
+	 *
+	 */
+	$ckeditor->basePath = LEPTON_URL."/modules/ckeditor_4/ckeditor/";
+	
+	$connectorPath = $ckeditor->basePath.'filemanager/connectors/php/connector.php';
+	$ckeditor->config['filebrowserBrowseUrl'] = $ckeditor->basePath.'filemanager/browser/default/browser.html?Connector='.$connectorPath;
+	$ckeditor->config['filebrowserImageBrowseUrl'] = $ckeditor->basePath.'filemanager/browser/default/browser.html?Type=Image&Connector='.$connectorPath;
+	$ckeditor->config['filebrowserFlashBrowseUrl'] = $ckeditor->basePath.'filemanager/browser/default/browser.html?Type=Flash&Connector='.$connectorPath;
+
 /**
  *	Function called by parent, default by the wysiwyg-module
  *	
