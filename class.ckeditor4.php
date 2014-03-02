@@ -122,28 +122,27 @@ class ckeditor
 			$s .= "\n<script type='text/javascript' src='".$this->ckeditor_file."'></script>\n";
 			$this->script_loaded = true;
 		}
-/*		$s .= "
-		<script>
-		CKEDITOR.config['contentsCss'] = '".$this->config['contentsCss']."';
-		CKEDITOR.config['language'] = '". $this->config['language']."';
-		CKEDITOR.replace( '". $this->config['id']. "', { customConfig: '". $this->config['customConfig']."' } );
-		</script>
-		";
-*/
+
 		$s .= "
 			<script>
 		";
+		
+		/**
+		 *	@notice:	aldus - 2014-03-01
+		 *	Keys from the config array for the js-output.
+		 *	Maybe the right place to customize for own plugins ...
+		 */
 		$fields = array(
-		'width',
-		'height',
-		'id',
-		'name',
-		'language',
-		'contentsCss',
-		'customConfig',
-		'filebrowserBrowseUrl',
-		'filebrowserImageBrowseUrl',
-		'filebrowserFlashBrowseUrl'
+			'width',
+			'height',
+			'id',
+			'name',
+			'language',
+			'contentsCss',
+			'customConfig',
+			'filebrowserBrowseUrl',
+			'filebrowserImageBrowseUrl',
+			'filebrowserFlashBrowseUrl'
 		);
 		
 		foreach( $fields as $key ) {
