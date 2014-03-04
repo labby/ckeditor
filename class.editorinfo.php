@@ -28,12 +28,18 @@ class editorinfo
 	
 	public $toolbars = array(
 		'small' => array(
-			array( 'Source', '-', 'Italic', 'Bold'),
+			array( 'Source', '-', 'Italic', 'Bold' ),
 			array( 'Image' ),
 			array( 'About' )
 		),
 		
-		'simple' => array(),
+		'simple' => array(
+			array( 'Source', '-', 'Italic', 'Bold', 'Underline' ),
+			array( 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', '-', 'Scayt' ),
+			array( 'Undo','Redo' ),
+			array( 'Image' ),
+			array( 'About' )
+		),
 		
 		'full'	=> 	array (
 			array ( 'Source','-','NewPage','Templates','Preview' ),
