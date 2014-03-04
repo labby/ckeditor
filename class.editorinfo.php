@@ -28,7 +28,8 @@ class editorinfo
 	
 	public $toolbars = array(
 		'small' => array(
-			array( 'Source', '-', 'Italic', 'Bold', 'Image'),
+			array( 'Source', '-', 'Italic', 'Bold'),
+			array( 'Image' ),
 			array( 'About' )
 		),
 		
