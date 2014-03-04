@@ -76,7 +76,7 @@ $ckeditor->config['skin'] = $ck_info->skins[0]; # 0 == 'moono'; # 1 == 'moonocol
  *	Toolbar
  *
  */
-$ckeditor->config['toolbar'] = $ck_info->toolbars['small']; # small, simple, full
+$ckeditor->config['toolbar'] = $ck_info->toolbars['Smart']; # Possibilities: Full, Smart, Simple
 
 /**	*********************************
  *	End of WYSIWYG-Admin support here
@@ -115,8 +115,8 @@ $ckeditor->config['filebrowserFlashUploadUrl'] = $uploadPath.'Flash';
 function show_wysiwyg_editor($name, $id, $content, $width = '100%', $height = '250px') {
 	global $ckeditor;
 	
-	$ckeditor->config['width'] = $width;
-	$ckeditor->config['height'] = $height;
+	$ckeditor->config['width'] = $width;		// -> WYSIWYG-Admin
+	$ckeditor->config['height'] = $height;		// -> WYSIWYG-Admin
 	$ckeditor->config['id'] = $id;
 	$ckeditor->config['name'] = $name;
 	$ckeditor->config['content'] = $content;

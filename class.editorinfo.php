@@ -27,21 +27,8 @@ class editorinfo
 	);
 	
 	public $toolbars = array(
-		'small' => array(
-			array( 'Source', '-', 'Italic', 'Bold' ),
-			array( 'Image' ),
-			array( 'About' )
-		),
 		
-		'simple' => array(
-			array( 'Source', '-', 'Italic', 'Bold', 'Underline' ),
-			array( 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', '-', 'Scayt' ),
-			array( 'Undo','Redo' ),
-			array( 'Image' ),
-			array( 'About' )
-		),
-		
-		'full'	=> 	array (
+		'Full'	=> 	array (
 			array ( 'Source','-','NewPage','Templates','Preview' ),
 			array ( 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Print','SpellChecker','-','Scayt' ),
 			array ( 'Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat' ),
@@ -55,6 +42,20 @@ class editorinfo
 			'/',
 			array ( 'Styles','Format','Font','FontSize' ),
 			array ( 'TextColor','BGColor' )
+		),
+		
+		'Smart' => array(
+			array( 'Source', '-', 'Italic', 'Bold', 'Underline' ),
+			array( 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', '-', 'Scayt' ),
+			array( 'Undo','Redo' ),
+			array( 'Image' ),
+			array( 'About' )
+		),
+
+		'Simple' => array(
+			array( 'Source', '-', 'Italic', 'Bold' ),
+			array( 'Image' ),
+			array( 'About' )
 		)
 	);
 	
