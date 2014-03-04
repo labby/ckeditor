@@ -22,7 +22,15 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For the complete reference:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
+/*
+config.toolbar_Basic = [
+    [ 'Source', '-', 'Bold', 'Italic', 'Underline', 'Image'],[ 'About'],
+    '/',
+    [ 'Source', '-', 'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock']
+];
 
+config.toolbar = "Basic";
+*/
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
@@ -40,7 +48,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'colors' },
 		{ name: 'about' }
 	];
-	
+
 	// Remove some buttons, provided by the standard plugins, which we don't
 	// need to have in the Standard(s) toolbar.
 	// config.removeButtons = 'Underline,Subscript,Superscript';

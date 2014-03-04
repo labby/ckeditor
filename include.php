@@ -59,14 +59,33 @@ $ckeditor->config['language'] = strtolower( LANGUAGE );
  */
 $ckeditor->config['contentsCss'] = '';
 
+/**	*******************************************
+ *	First steps for WYSIWYG-Admin support.
+ *	Getting skin and Toolbar (-def.) from the 
+ */
+require_once( dirname(__FILE__)."/class.editorinfo.php" );
+$ck_info = new editorinfo();
+
 /**
  *	Skin
  *
  */
-$ckeditor->config['skin'] = 'moono'; # 'moonocolor';
+$ckeditor->config['skin'] = $ck_info->skins[0]; # 0 == 'moono'; # 1 == 'moonocolor';
 
 /**
+ *	Toolbar
+ *
+ */
+$ckeditor->config['toolbar'] = $ck_info->toolbars['small']; # small, simple, full
+
+/**	*********************************
+ *	End of WYSIWYG-Admin support here
+ *
+ */
+ 
+/**
  *	The filebrowser are called in the include, because later on we can make switches, use WB_URL and so on
+ *	@notice	2014-03-04	Aldus	Comment not clear! M.f.i.!
  *
  */
 $ckeditor->basePath = LEPTON_URL."/modules/ckeditor_4/ckeditor/";

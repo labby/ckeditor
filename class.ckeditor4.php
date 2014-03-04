@@ -126,32 +126,9 @@ class ckeditor
 		$s .= "
 			<script>
 		";
-		
-		/**
-		 *	@notice:	aldus - 2014-03-01
-		 *	Keys from the config array for the js-output.
-		 *	Maybe the right place to customize for own plugins ...
-		 */
-		$fields = array(
-			'skin',
-			'width',
-			'height',
-			'id',
-			'name',
-			'language',
-			'contentsCss',
-			'customConfig',
-			'filebrowserBrowseUrl',
-			'filebrowserImageBrowseUrl',
-			'filebrowserFlashBrowseUrl',
-			'uploader',
-			'filebrowserUploadUrl',
-			'filebrowserImageUploadUrl',
-			'filebrowserFlashUploadUrl'
-		);
-		
-		foreach( $fields as $key ) {
-			$s .= "CKEDITOR.config['".$key."'] = '".$this->config[$key]."';\n";
+				
+		foreach( $this->config as $key => $value ) {
+			$s .= "CKEDITOR.config['".$key."'] = ".$this->jsEncode( $value ).";\n";
 		}
 		
 		$s .= "CKEDITOR.replace( '". $this->config['id']. "', { customConfig: '". $this->config['customConfig']."' } );
@@ -159,6 +136,45 @@ class ckeditor
 		";
 
 		return $s;
+	}
+	
+	/**
+	 * This little function provides a basic JSON support.
+	 *
+	 * @param mixed $val
+	 * @return string
+	 */
+	private function jsEncode($val)
+	{
+		if (is_null($val)) {
+			return 'null';
+		}
+		if (is_bool($val)) {
+			return $val ? 'true' : 'false';
+		}
+		if (is_int($val)) {
+			return $val;
+		}
+		if (is_float($val)) {
+			return str_replace(',', '.', $val);
+		}
+		if (is_array($val) || is_object($val)) {
+			if (is_array($val) && (array_keys($val) === range(0,count($val)-1))) {
+				return '[' . implode(',', array_map(array($this, 'jsEncode'), $val)) . ']';
+			}
+			$temp = array();
+			foreach ($val as $k => $v){
+				$temp[] = $this->jsEncode("{$k}") . ':' . $this->jsEncode($v);
+			}
+			return '{' . implode(',', $temp) . '}';
+		}
+		// String otherwise
+		if (strpos($val, '@@') === 0)
+			return substr($val, 2);
+		if (strtoupper(substr($val, 0, 9)) == 'CKEDITOR.')
+			return $val;
+
+		return '"' . str_replace(array("\\", "/", "\n", "\t", "\r", "\x08", "\x0c", '"'), array('\\\\', '\\/', '\\n', '\\t', '\\r', '\\b', '\\f', '\"'), $val) . '"';
 	}
 }
 ?>
