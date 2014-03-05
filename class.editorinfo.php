@@ -17,7 +17,7 @@ class editorinfo
 	
 	protected $guid		= "E3355C6B-794A-4E8C-A505-75A0C2AEFA4F";
 
-	protected $version	= "0.1.0";
+	protected $version	= "0.1.1";
 
 	protected $author	= "Dietrich Roland Pehkle (Aldus)";
 	
@@ -58,6 +58,10 @@ class editorinfo
 			array( 'About' )
 		)
 	);
+	
+	public $default_width = "100%";
+	
+	public $default_height = "250px";
 	
 	public function __construct() {
 	

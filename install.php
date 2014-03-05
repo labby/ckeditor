@@ -49,14 +49,14 @@ if (true == in_array("mod_wysiwyg_admin", $all_fields)) {
 		require_once(dirname(__FILE__)."/class.editorinfo.php");
 		$ck_info = new editorinfo();
 		
-		$temp = array_keys( $ck_info->toolbars );
+		$toolbars = array_keys( $ck_info->toolbars );
 		
 		$fields = array(
 			'editor'	=> "ckeditor_4",
-			'skin'	=> $ck_info->skins[0],
-			'menu'	=> $temp[0],
-			'width'	=> "100%",
-			'height' => "250px"
+			'skin'	=> $ck_info->skins[0],		// first entry
+			'menu'	=> $toolbars[0],			// first entry
+			'width'	=> $ck_info->default_width,
+			'height' => $ck_info->default_height
 		);
 		
 		$database->query( 
