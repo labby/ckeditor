@@ -28,7 +28,7 @@ class editorinfo
 	
 	public $toolbars = array(
 		
-		'Full'	=> 	array (
+		'Full'	=> 	array(
 			array ( 'Source','-','NewPage','Templates','Preview' ),
 			array ( 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Print','SpellChecker','-','Scayt' ),
 			array ( 'Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat' ),
@@ -66,6 +66,35 @@ class editorinfo
 	public function __destruct() {
 	
 	}
-
+	
+	/**
+	 *	@param	string	What (toolbars or skins)
+	 *	@param	string	Name of the select
+	 *	@param	string	Name of the selected item.
+	 *	@return	string	The generated (HTML-) select tag.
+	 *
+	 */
+	public function build_select( $what="toolbars", $name="menu", $selected_item) {
+		switch( $what ) {
+			case "toolbars":
+				$data_ref = array_keys($this->toolbars);
+				break;
+			
+			case 'skins':
+				$data_ref = &$this->skins;
+				break;
+				
+			default:
+				return "";
+		}
+		
+		$s = "\n<select name='".$name."'>\n";
+		foreach($data_ref as &$key) {
+			$s .= "<option name='".$key."' ".( $key == $selected_item ? "selected='selected'" : "" )."'>".$key."</option>\n";
+		}
+		$s .= "</select>\n";
+		
+		return $s;
+	}
 }
 ?>
