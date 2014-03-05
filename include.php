@@ -67,16 +67,39 @@ require_once( dirname(__FILE__)."/class.editorinfo.php" );
 $ck_info = new editorinfo();
 
 /**
+ *	Get WYSIWYG-Admin information
+ *
+ *
+ */
+$fields = array( 'skin', 'menu', 'width', 'height' );
+
+$q = $database->build_mysql_query(
+	'SELECT',
+	TABLE_PREFIX."mod_wysiwyg_admin",
+	$fields,	
+	'`editor` = \''.WYSIWYG_EDITOR.'\''
+);
+$result = $database->query( $q );
+$wysiwyg_info = $result->fetchRow( MYSQL_ASSOC );
+
+/**
  *	Skin
  *
  */
-$ckeditor->config['skin'] = $ck_info->skins[0]; # 0 == 'moono'; # 1 == 'moonocolor';
+$ckeditor->config['skin'] = $wysiwyg_info['skin']; # 0 == 'moono'; # 1 == 'moonocolor';
 
 /**
  *	Toolbar
  *
  */
-$ckeditor->config['toolbar'] = $ck_info->toolbars['Smart']; # Possibilities: Full, Smart, Simple
+$ckeditor->config['toolbar'] = $ck_info->toolbars[ $wysiwyg_info['menu'] ]; # Possibilities: Full, Smart, Simple
+
+/**
+ *	Height and width
+ *
+ */
+$ckeditor->config['width'] = $wysiwyg_info['width'];
+$ckeditor->config['height'] = $wysiwyg_info['width'];
 
 /**	*********************************
  *	End of WYSIWYG-Admin support here
@@ -115,8 +138,8 @@ $ckeditor->config['filebrowserFlashUploadUrl'] = $uploadPath.'Flash';
 function show_wysiwyg_editor($name, $id, $content, $width = '100%', $height = '250px') {
 	global $ckeditor;
 	
-	$ckeditor->config['width'] = $width;		// -> WYSIWYG-Admin
-	$ckeditor->config['height'] = $height;		// -> WYSIWYG-Admin
+	#$ckeditor->config['width'] = $width;		// -> WYSIWYG-Admin
+	#$ckeditor->config['height'] = $height;		// -> WYSIWYG-Admin
 	$ckeditor->config['id'] = $id;
 	$ckeditor->config['name'] = $name;
 	$ckeditor->config['content'] = $content;
