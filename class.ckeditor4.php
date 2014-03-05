@@ -76,11 +76,30 @@ class ckeditor
 	public $force = true;
 	
 	/**
+	 *	Boolean for WYSIWYG Admin support (avaible or not)
+	 *
+	 */
+	public $wysiwyg_admin = false;
+	
+	/**
+	 *	Private DB handle
+	 *
+	 */
+	private $db = NULL;
+	
+	/**
 	 *	The constructor of the class
 	 *
 	 */
-	public function __construct() {
+	public function __construct( &$db_ref ) {
+		$this->db = $db_ref;
 		
+		/**
+		 *	Looking for the WYSIWYG-Admin table in the db.
+		 */
+		$ignore = TABLE_PREFIX;
+		$all = $this->db->list_tables( $ignore );
+		$this->wysiwyg_admin = in_array("mod_wysiwyg_admin", $all);
 	}
 	
 	/**

@@ -32,7 +32,7 @@ if (defined('WB_PATH')) {
 // end include class.secure.php
  
 require_once( dirname(__FILE__)."/class.ckeditor4.php");
-$ckeditor = new ckeditor();
+$ckeditor = new ckeditor( $database );
 
 /**
  *	Absolute path to the ck-editor basic script.
@@ -66,46 +66,48 @@ $ckeditor->config['contentsCss'] = '';
 require_once( dirname(__FILE__)."/class.editorinfo.php" );
 $ck_info = new editorinfo();
 
-/**
- *	Get WYSIWYG-Admin information
- *
- *
- */
-$fields = array( 'skin', 'menu', 'width', 'height' );
+if (true === $ckeditor->wysiwyg_admin) {
+	
+	/**
+	 *	Get WYSIWYG-Admin information
+	 *
+	 *
+	 */
+	$fields = array( 'skin', 'menu', 'width', 'height' );
 
-$q = $database->build_mysql_query(
-	'SELECT',
-	TABLE_PREFIX."mod_wysiwyg_admin",
-	$fields,	
-	'`editor` = \''.WYSIWYG_EDITOR.'\''
-);
-$result = $database->query( $q );
-$wysiwyg_info = $result->fetchRow( MYSQL_ASSOC );
+	$q = $database->build_mysql_query(
+		'SELECT',
+		TABLE_PREFIX."mod_wysiwyg_admin",
+		$fields,	
+		'`editor` = \''.WYSIWYG_EDITOR.'\''
+	);
+	$result = $database->query( $q );
+	$wysiwyg_info = $result->fetchRow( MYSQL_ASSOC );
 
-/**
- *	Skin
- *
- */
-$ckeditor->config['skin'] = $wysiwyg_info['skin']; # 0 == 'moono'; # 1 == 'moonocolor';
+	/**
+	 *	Skin
+	 *	Possibilities are 'moono' or 'moonocolor'.
+	 */
+	$ckeditor->config['skin'] = $wysiwyg_info['skin'];
 
-/**
- *	Toolbar
- *
- */
-$ckeditor->config['toolbar'] = $ck_info->toolbars[ $wysiwyg_info['menu'] ]; # Possibilities: Full, Smart, Simple
+	/**
+	 *	Toolbar
+	 *	Possibilities: 'Full', 'Smart', 'Simple'
+	 */
+	$ckeditor->config['toolbar'] = $ck_info->toolbars[ $wysiwyg_info['menu'] ];
 
-/**
- *	Height and width
- *
- */
-$ckeditor->config['width'] = $wysiwyg_info['width'];
-$ckeditor->config['height'] = $wysiwyg_info['width'];
-
+	/**
+	 *	Height and width
+	 *
+	 */
+	$ckeditor->config['width'] = $wysiwyg_info['width'];
+	$ckeditor->config['height'] = $wysiwyg_info['width'];
+}
 /**	*********************************
  *	End of WYSIWYG-Admin support here
  *
  */
- 
+	 
 /**
  *	The filebrowser are called in the include, because later on we can make switches, use WB_URL and so on
  *	@notice	2014-03-04	Aldus	Comment not clear! M.f.i.!
@@ -133,15 +135,15 @@ $ckeditor->config['filebrowserFlashUploadUrl'] = $uploadPath.'Flash';
  *	@param	string	Optional the width, default "100%" of given space.
  *	@param	string	Optional the height of the editor - default is '250px'
  *
- *
  */
 function show_wysiwyg_editor($name, $id, $content, $width = '100%', $height = '250px') {
 	global $ckeditor;
 	
 	if (true === $ckeditor->force) {
-		$ckeditor->config['width'] = $width;		// -> WYSIWYG-Admin
-		$ckeditor->config['height'] = $height;		// -> WYSIWYG-Admin
+		$ckeditor->config['width'] = $width;		// -> overwrite WYSIWYG-Admin settings
+		$ckeditor->config['height'] = $height;		// -> overwrite WYSIWYG-Admin settings
 	}
+	
 	$ckeditor->config['id'] = $id;
 	$ckeditor->config['name'] = $name;
 	$ckeditor->config['content'] = $content;
