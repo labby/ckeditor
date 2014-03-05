@@ -70,6 +70,12 @@ class ckeditor
 	private $script_loaded = false;
 	
 	/**
+	 *	Boolean to force given height and width from the function call instead of the current settings here.
+	 *
+	 */
+	public $force = true;
+	
+	/**
 	 *	The constructor of the class
 	 *
 	 */

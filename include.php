@@ -138,8 +138,10 @@ $ckeditor->config['filebrowserFlashUploadUrl'] = $uploadPath.'Flash';
 function show_wysiwyg_editor($name, $id, $content, $width = '100%', $height = '250px') {
 	global $ckeditor;
 	
-	#$ckeditor->config['width'] = $width;		// -> WYSIWYG-Admin
-	#$ckeditor->config['height'] = $height;		// -> WYSIWYG-Admin
+	if (true === $ckeditor->force) {
+		$ckeditor->config['width'] = $width;		// -> WYSIWYG-Admin
+		$ckeditor->config['height'] = $height;		// -> WYSIWYG-Admin
+	}
 	$ckeditor->config['id'] = $id;
 	$ckeditor->config['name'] = $name;
 	$ckeditor->config['content'] = $content;
