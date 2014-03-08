@@ -4,7 +4,7 @@
  *	First experimental version of a (new) WYSIWYG-Admin support (-class).
  *	Some informations about skin(-s) and used toolbar(-s) and there definations inside this file.
  *
- *	@version	0.1.1
+ *	@version	0.1.2
  *	@date		2014-03-08
  *	@author		Dietrich Roland Pehlke (CMS-LAB)
  *
@@ -17,7 +17,7 @@ class editorinfo
 	
 	protected $guid		= "E3355C6B-794A-4E8C-A505-75A0C2AEFA4F";
 
-	protected $version	= "0.1.1";
+	protected $version	= "0.1.2";
 
 	protected $author	= "Dietrich Roland Pehkle (Aldus)";
 	
@@ -55,6 +55,17 @@ class editorinfo
 		'Simple' => array(
 			array( 'Source', '-', 'Italic', 'Bold' ),
 			array( 'Image' ),
+			array( 'About' )
+		),
+		
+		/**
+		 *	This one is for experimental use only. Use this one for your own studies and
+		 *	development e.g. own plugins, icons, tools, etc.
+		 *
+		 */
+		'Experimental' => array(
+			array( 'Source', '-', 'Italic', 'Bold', 'Underline', 'Strike', '-', 'Undo', 'Redo' ),
+			array( 'Image', 'HorizontalRule','Smiley','SpecialChar' ),
 			array( 'About' )
 		)
 	);
@@ -136,10 +147,10 @@ class editorinfo
 					
 					$fields = array(
 						'editor'	=> "ckeditor_4",
-						'skin'	=> $this->skins[0],		// first entry
-						'menu'	=> $toolbars[0],		// first entry
-						'width'	=> $this->default_width,
-						'height' => $this->default_height
+						'skin'		=> $this->skins[0],		// first entry
+						'menu'		=> $toolbars[0],		// first entry
+						'width'		=> $this->default_width,
+						'height'	=> $this->default_height
 					);
 					
 					$db_handle->query( 
