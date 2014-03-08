@@ -30,7 +30,7 @@ if (defined('WB_PATH')) {
 	}
 }
 // end include class.secure.php
- 
+
 require_once( dirname(__FILE__)."/class.ckeditor4.php");
 $ckeditor = new ckeditor( $database );
 
@@ -101,7 +101,7 @@ if (true === $ckeditor->wysiwyg_admin) {
 	 *
 	 */
 	$ckeditor->config['width'] = $wysiwyg_info['width'];
-	$ckeditor->config['height'] = $wysiwyg_info['width'];
+	$ckeditor->config['height'] = $wysiwyg_info['height'];
 }
 /**	*********************************
  *	End of WYSIWYG-Admin support here
