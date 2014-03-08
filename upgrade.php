@@ -27,5 +27,13 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
+/**
+ *	WYSIWYG-Admin
+ */
+ 
+require_once( dirname(__FILE__)."/class.editorinfo.php");
+
+$ck_info = new editorinfo();
+$ck_info->wysiwyg_admin_init( $database );
  
 ?>
