@@ -61,4 +61,5 @@ config.toolbar = "Basic";
     
     config.entities_latin = false;
 
+	config.extraPlugins = "Wbdroplets";
 };

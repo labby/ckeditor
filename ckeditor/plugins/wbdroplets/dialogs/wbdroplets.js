@@ -48,7 +48,7 @@ CKEDITOR.dialog.add( 'wbdroplets', function( editor ) {
 			{
 				type: 'select',
 				id: 'txtName',
-				items:DropletSelectBox,
+				items: DropletSelectBox,
 				label: editor.lang.wbdroplets.wbdroplets.name,
 				required: true,
 				onChange:function(){

@@ -38,16 +38,16 @@ if(!function_exists('cleanup')) {
 	} // end function cleanup
 }
 
-$DropletSelectBox = "var DropletSelectBox = new Array( ";
-$description = "var DropletInfoBox = new Array( ";
-$usage = "var DropletUsageBox = new Array( ";
-$array = array();
+$DropletSelectBox = "\nvar DropletSelectBox = new Array( ";
+$description = "\nvar DropletInfoBox = new Array( ";
+$usage = "\nvar DropletUsageBox = new Array( ";
+
 	$sql  = 'SELECT * FROM `'.TABLE_PREFIX.'mod_droplets` ';
 	$sql .= 'WHERE `active`=1 ';
 	$sql .= 'ORDER BY `name` ASC';
 	if($resRec = $database->query($sql))
 	{
-		while( !false == ($droplet = $resRec->fetchRow() ) )
+		while( !false == ($droplet = $resRec->fetchRow( MYSQL_ASSOC ) ) )
 		{
 
 			$title = cleanup($droplet['name']);

@@ -59,6 +59,8 @@ $ckeditor->config['language'] = strtolower( LANGUAGE );
  */
 $ckeditor->config['contentsCss'] = '';
 
+$ckeditor->config['extraPlugins'] = 'wbdroplets';
+
 /**	*******************************************
  *	First steps for WYSIWYG-Admin support.
  *	Getting skin and Toolbar (-def.) from the 
