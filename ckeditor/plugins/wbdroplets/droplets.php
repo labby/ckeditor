@@ -18,9 +18,6 @@ header('Pragma: no-cache');
     to wbdroplets plugin.
 */
 
-// Include the config file
-#require('../../../../../config.php');
-
 // include class.secure.php to protect this file and the whole CMS!
 if (defined('WB_PATH')) {	
 	include(WB_PATH.'/framework/class.secure.php'); 

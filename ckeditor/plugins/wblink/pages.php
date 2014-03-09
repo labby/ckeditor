@@ -19,12 +19,28 @@ header('Pragma: no-cache');
     to internpage plugin.
 */
 
-// Include the config file
-require('../../../../../config.php');
+// include class.secure.php to protect this file and the whole CMS!
+if (defined('WB_PATH')) {	
+	include(WB_PATH.'/framework/class.secure.php'); 
+} else {
+	$oneback = "../";
+	$root = $oneback;
+	$level = 1;
+	while (($level < 10) && (!file_exists($root.'/framework/class.secure.php'))) {
+		$root .= $oneback;
+		$level += 1;
+	}
+	if (file_exists($root.'/framework/class.secure.php')) { 
+		include($root.'/framework/class.secure.php'); 
+	} else {
+		trigger_error(sprintf("[ <b>%s</b> ] Can't include class.secure.php!", $_SERVER['SCRIPT_NAME']), E_USER_ERROR);
+	}
+}
+// end include class.secure.php
 
 // Create new admin object
 require(WB_PATH.'/framework/class.admin.php');
-$admin = new admin('Pages', 'pages_modify', false);
+$admin = new admin('Pages', 'pages_modify', false, false);
 
 if(!function_exists('cleanup')) {
 
@@ -34,7 +50,7 @@ if(!function_exists('cleanup')) {
 		{
 			$string = stripslashes($string);
 		}
-		return preg_replace("/\r?\n/", "\\n", mysql_real_escape_string($string));
+		return preg_replace("/\r?\n/", "\\n", $string );
 
 	} // end function cleanup
 }
