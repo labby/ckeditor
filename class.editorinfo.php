@@ -37,7 +37,7 @@ class editorinfo
 			array ( 'Bold','Italic','Underline','Strike','-','Subscript','Superscript','Shy' ),
 			array ( 'NumberedList','BulletedList','-','Outdent','Indent','Blockquote','CreateDiv' ),
 			array ( 'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ),
-			array ( 'wbdroplets','wblink','Link','Unlink','Anchor' ),
+			array ( 'Wbdroplets','wblink','Link','Unlink','Anchor' ),
 			array ( 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar' ),
 			'/',
 			array ( 'Styles','Format','Font','FontSize' ),
@@ -46,7 +46,7 @@ class editorinfo
 		
 		'Smart' => array(
 			array( 'Source', '-', 'Italic', 'Bold', 'Underline' ),
-			array( 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', '-', 'Scayt' ),
+			array( 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Wbdroplets', '-', 'Print', 'SpellChecker', '-', 'Scayt' ),
 			array( 'Undo','Redo' ),
 			array( 'Image' ),
 			array( 'About' )
@@ -55,6 +55,7 @@ class editorinfo
 		'Simple' => array(
 			array( 'Source', '-', 'Italic', 'Bold' ),
 			array( 'Image' ),
+			array( 'Wbdroplets' ),
 			array( 'About' )
 		),
 		
