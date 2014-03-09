@@ -125,7 +125,8 @@ class ckeditor
 
 	public function toHTML() {
 		$html  = $this->__build_textarea();
-		$html  .= $this->__build_script();
+		# $html  .= $this->__build_script();
+		$html .= $this->__build_replace(); # experimental use of "CKEDITOR.replace" ....
 		
 		return $html;
 	}
@@ -157,6 +158,31 @@ class ckeditor
 		}
 		
 		$s .= "CKEDITOR.replace( '". $this->config['id']. "', {customConfig: '". $this->config['customConfig']."'});
+		</script>
+		";
+		
+		return $s;
+	}
+	
+	private function __build_replace() {
+	
+		$s = "";
+		if (false == $this->script_loaded) {
+			$s .= "\n<script type='text/javascript' src='".$this->ckeditor_file."'></script>\n";
+		//	$s .= "\n<script type='text/javascript' src='".WB_URL."/modules/ckeditor_4/ckeditor/plugins/wbdroplets/droplets.php'></script>\n";
+			$this->script_loaded = true;
+		}
+
+		$s .= "
+			<script>
+			CKEDITOR.replace('".$this->config['id']."',{
+		";
+		
+		foreach( $this->config as $key => $value ) {
+			$s .= "'".$key."' : ".$this->jsEncode( $value ).",\n";
+		}
+		
+		$s .= "});
 		</script>
 		";
 		
