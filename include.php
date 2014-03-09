@@ -127,6 +127,8 @@ $ckeditor->config['filebrowserUploadUrl'] = $uploadPath.'File';
 $ckeditor->config['filebrowserImageUploadUrl'] = $uploadPath.'Image';
 $ckeditor->config['filebrowserFlashUploadUrl'] = $uploadPath.'Flash';
 
+$ckeditor->config['readOnly'] = true;
+
 /**
  *	Function called by parent, default by the wysiwyg-module
  *	

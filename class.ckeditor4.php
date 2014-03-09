@@ -156,10 +156,10 @@ class ckeditor
 			$s .= "CKEDITOR.config['".$key."'] = ".$this->jsEncode( $value ).";\n";
 		}
 		
-		$s .= "CKEDITOR.replace( '". $this->config['id']. "', { customConfig: '". $this->config['customConfig']."' } );
+		$s .= "CKEDITOR.replace( '". $this->config['id']. "', {customConfig: '". $this->config['customConfig']."'});
 		</script>
 		";
-
+		
 		return $s;
 	}
 	
