@@ -40,10 +40,6 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-// Create new admin object
-#require(WB_PATH.'/framework/class.admin.php');
-#$admin = new admin('Pages', 'pages_modify', false);
-
 if(!function_exists('cleanup')) {
 
 	function cleanup ($string) {
@@ -52,7 +48,7 @@ if(!function_exists('cleanup')) {
 		{
 			$string = stripslashes($string);
 		}
-		return preg_replace("/\r?\n/", "\\n", ($string));
+		return preg_replace("/\r?\n/", "\\n", $string );
 
 	} // end function cleanup
 }
@@ -61,23 +57,22 @@ $DropletSelectBox = "\nvar DropletSelectBox = new Array( ";
 $description = "\nvar DropletInfoBox = new Array( ";
 $usage = "\nvar DropletUsageBox = new Array( ";
 
-	$sql  = 'SELECT * FROM `'.TABLE_PREFIX.'mod_droplets` ';
-	$sql .= 'WHERE `active`=1 ';
-	$sql .= 'ORDER BY `name` ASC';
-	if($resRec = $database->query($sql))
+$sql  = 'SELECT * FROM `'.TABLE_PREFIX.'mod_droplets` ';
+$sql .= 'WHERE `active`=1 ';
+$sql .= 'ORDER BY `name` ASC';
+if($resRec = $database->query($sql))
+{
+	while( !false == ($droplet = $resRec->fetchRow( MYSQL_ASSOC ) ) )
 	{
-		while( !false == ($droplet = $resRec->fetchRow( MYSQL_ASSOC ) ) )
-		{
+		$title = cleanup($droplet['name']);
+		$desc = cleanup($droplet['description']);
+		$comments = cleanup($droplet['comments']);
 
-			$title = cleanup($droplet['name']);
-			$desc = cleanup($droplet['description']);
-			$comments = cleanup($droplet['comments']);
-
-	        $DropletSelectBox .=  "new Array( '".$title."', '".$droplet['name']."'), ";
-	        $description .=  "new Array( '".$title."', '".$desc."'), ";
-	        $usage .=  "new Array( '".$title."', '".$comments."'), ";
-		}
+		$DropletSelectBox .=  "new Array( '".$title."', '".$droplet['name']."'), ";
+		$description .=  "new Array( '".$title."', '".$desc."'), ";
+		$usage .=  "new Array( '".$title."', '".$comments."'), ";
 	}
+}
 	
 $DropletSelectBox = substr($DropletSelectBox,0,-2);
 $description = substr($description,0,-2);
