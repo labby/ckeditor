@@ -13,10 +13,10 @@ CKEDITOR.plugins.add( 'droplets', {
 		editor.addCommand( 'droplets', new CKEDITOR.dialogCommand( 'droplets' ) );
 
 		if ( editor.ui.addButton ) {
-			editor.ui.addButton( 'Wbdroplets', {
+			editor.ui.addButton( 'Droplets', {	// Aldus: be carefull! First char uppercase!
 				label: editor.lang.droplets.droplets.toolbar,
 				command: 'droplets',
-				toolbar: 'pagelinks,10'
+				toolbar: 'pagelink,10'
 			});
 		}
 

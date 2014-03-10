@@ -59,7 +59,7 @@ $ckeditor->config['language'] = strtolower( LANGUAGE );
  */
 $ckeditor->config['contentsCss'] = '';
 
-$ckeditor->config['extraPlugins'] = 'wbdroplets,wblink';
+$ckeditor->config['extraPlugins'] = 'droplets';
 
 /**	*******************************************
  *	First steps for WYSIWYG-Admin support.
@@ -94,7 +94,8 @@ if (true === $ckeditor->wysiwyg_admin) {
 
 	/**
 	 *	Toolbar
-	 *	Possibilities: 'Full', 'Smart', 'Simple'
+	 *	Possibilities: 'Full', 'Smart', 'Simple'.
+	 *	See class.editorinfo.php for details or other toolbars.
 	 */
 	$ckeditor->config['toolbar'] = $ck_info->toolbars[ $wysiwyg_info['menu'] ];
 

@@ -37,7 +37,7 @@ class editorinfo
 			array ( 'Bold','Italic','Underline','Strike','-','Subscript','Superscript','Shy' ),
 			array ( 'NumberedList','BulletedList','-','Outdent','Indent','Blockquote','CreateDiv' ),
 			array ( 'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ),
-			array ( 'Droplets','Wblink','Link','Unlink','Anchor' ),
+			array ( 'Droplets','Link','Unlink','Anchor' ),
 			array ( 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar' ),
 			'/',
 			array ( 'Styles','Format','Font','FontSize' ),
@@ -46,7 +46,7 @@ class editorinfo
 		
 		'Smart' => array(
 			array( 'Source', '-', 'Italic', 'Bold', 'Underline' ),
-			array( 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Droplets', 'Wblink', '-', 'Print', 'SpellChecker', '-', 'Scayt' ),
+			array( 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Droplets', '-', 'Print', 'SpellChecker', '-', 'Scayt' ),
 			array( 'Undo','Redo' ),
 			array( 'Image' ),
 			array( 'About' )
@@ -55,7 +55,7 @@ class editorinfo
 		'Simple' => array(
 			array( 'Source', '-', 'Italic', 'Bold' ),
 			array( 'Image' ),
-			array( 'Droplets', 'Wblink' ),
+			array( 'Droplets' ),
 			array( 'About' )
 		),
 		
@@ -66,8 +66,9 @@ class editorinfo
 		 */
 		'Experimental' => array(
 			array( 'Source', '-', 'Italic', 'Bold', 'Underline', 'Strike', '-', 'Undo', 'Redo' ),
-			array( 'Image', 'HorizontalRule','Smiley','SpecialChar' ),
-			array( 'About', 'Droplets', 'Wblink' )
+			array( 'Image', 'HorizontalRule','SpecialChar' ),
+			array( 'Droplets' ),
+			array( 'About' )
 		)
 	);
 	
