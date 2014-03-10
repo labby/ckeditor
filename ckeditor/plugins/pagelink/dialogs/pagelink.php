@@ -43,8 +43,8 @@ function gen_page_list($parent) {
 		$leading_dashes = '';
 		for($i = 0; $i < $page['level']; $i++) $leading_dashes .= '- ';
 		
-		$list .= "[ \"".$leading_dashes." ".$title."\",'[wblink".$page['page_id']."]'],";
-		$page_titles .= " pagelink_titles['[wblink".$page['page_id']."]']=\"".$title."\";\n";
+		$list .= "[ \"".$leading_dashes." ".$title."\",'[pagelink".$page['page_id']."]'],";
+		$page_titles .= " pagelink_titles['[pagelink".$page['page_id']."]']=\"".$title."\";\n";
 		
 		gen_page_list($page['page_id']);
 	}
@@ -62,8 +62,8 @@ if($get_pages->numRows() > 0) {
 			$page['menu_title']
 		);
 		
-		$list .= "[ \"".$title."\",'[wblink".$page['page_id']."]'],";
-		$page_titles .= " pagelink_titles['[wblink".$page['page_id']."]']=\"".$title."\";\n";
+		$list .= "[ \"".$title."\",'[pagelink".$page['page_id']."]'],";
+		$page_titles .= " pagelink_titles['[pagelink".$page['page_id']."]']=\"".$title."\";\n";
 		
 		gen_page_list($page['page_id']);
 	}

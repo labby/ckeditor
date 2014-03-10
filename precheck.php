@@ -30,13 +30,13 @@ if (defined('WB_PATH')) {
 // Checking Requirements
 
 $PRECHECK['VERSION']        = array(
-    'VERSION' => '2.0.0',
+    'VERSION' => '1.3.0',
     'OPERATOR' => '>='
 );
 
 $PRECHECK['WB_ADDONS']      = array(
     'wysiwyg_admin' => array(
-        'VERSION' => '2.1.0',
+        'VERSION' => '1.0.0',
         'OPERATOR' => '>='
     ),
 );
