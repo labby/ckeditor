@@ -67,7 +67,7 @@ class editorinfo
 		'Experimental' => array(
 			array( 'Source', '-', 'Italic', 'Bold', 'Underline', 'Strike', '-', 'Undo', 'Redo' ),
 			array( 'Image', 'HorizontalRule','SpecialChar' ),
-			array( 'Droplets' ),
+			array( 'Droplets', 'Wblink' ),
 			array( 'About' )
 		)
 	);
