@@ -66,8 +66,9 @@ class editorinfo
 		 */
 		'Experimental' => array(
 			array( 'Source', '-', 'Italic', 'Bold', 'Underline', 'Strike', '-', 'Undo', 'Redo' ),
-			array( 'Image', 'HorizontalRule','SpecialChar' ),
-			array( 'Droplets', 'Pagelink', 'Unlink','Anchor', 'Link' ),
+			array( 'Image', 'HorizontalRule', 'SpecialChar' ),
+			'/',
+			array( 'Droplets', 'Pagelink', 'Unlink', 'Anchor', 'Link' ),
 			array( 'About' )
 		)
 	);
