@@ -55,7 +55,7 @@ class editorinfo
 		'Simple' => array(
 			array( 'Source', '-', 'Italic', 'Bold' ),
 			array( 'Image' ),
-			array( 'Droplets' ),
+			array( 'Droplets', 'Wblink' ),
 			array( 'About' )
 		),
 		
@@ -67,7 +67,7 @@ class editorinfo
 		'Experimental' => array(
 			array( 'Source', '-', 'Italic', 'Bold', 'Underline', 'Strike', '-', 'Undo', 'Redo' ),
 			array( 'Image', 'HorizontalRule','SpecialChar' ),
-			array( 'Droplets', 'Wblink' ),
+			array( 'Droplets', 'Pagelink', 'Unlink','Anchor', 'Link' ),
 			array( 'About' )
 		)
 	);

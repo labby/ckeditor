@@ -2,7 +2,7 @@
 Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 */
-CKEDITOR.plugins.setLang( 'pagelink', 'en', {
+CKEDITOR.plugins.setLang( 'pagelink', 'en-gb', {
 	acccessKey: 'Access Key',
 	advanced: 'Advanced',
 	advisoryContentType: 'Advisory Content Type',
@@ -45,7 +45,7 @@ CKEDITOR.plugins.setLang( 'pagelink', 'en', {
 	popupStatusBar: 'Status Bar',
 	popupToolbar: 'Toolbar',
 	popupTop: 'Top Position',
-	rel: 'Relationship',
+	rel: 'Relationship', // MISSING
 	selectAnchor: 'Select an Anchor',
 	styles: 'Style',
 	tabIndex: 'Tab Index',
@@ -65,8 +65,11 @@ CKEDITOR.plugins.setLang( 'pagelink', 'en', {
 	toWb: 'WB-Link',
 	wbPage: 'WB-Page',
 	newsItem: 'Direkt - Link',
+
 	selectNews: 'Please select a news-item',
+
 	selectTopics: 'Please select a topics-item',
+
 	selectBakery: 'Please select a bakery-item',
 	noNews: 'no news page selected'
 });
