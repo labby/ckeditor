@@ -73,7 +73,7 @@ class ckeditor
 	 *	Boolean to force given height and width from the function call instead of the current settings here.
 	 *
 	 */
-	public $force = true;
+	public $force = false;
 	
 	/**
 	 *	Boolean for WYSIWYG Admin support (avaible or not)
