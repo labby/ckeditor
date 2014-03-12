@@ -37,7 +37,7 @@ class editorinfo
 			array ( 'Bold','Italic','Underline','Strike','-','Subscript','Superscript','Shy' ),
 			array ( 'NumberedList','BulletedList','-','Outdent','Indent','Blockquote','CreateDiv' ),
 			array ( 'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ),
-			array ( 'Droplets','Link','Unlink','Anchor' ),
+			array ( 'Droplets', 'Pagelink', 'Link','Unlink','Anchor' ),
 			array ( 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar' ),
 			'/',
 			array ( 'Styles','Format','Font','FontSize' ),
@@ -46,7 +46,7 @@ class editorinfo
 		
 		'Smart' => array(
 			array( 'Source', '-', 'Italic', 'Bold', 'Underline' ),
-			array( 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Droplets', '-', 'Print', 'SpellChecker', '-', 'Scayt' ),
+			array( 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Droplets', 'Pagelink', '-', 'Print', 'SpellChecker', '-', 'Scayt' ),
 			array( 'Undo','Redo' ),
 			array( 'Image' ),
 			array( 'About' )
@@ -68,7 +68,7 @@ class editorinfo
 			array( 'Source', '-', 'Italic', 'Bold', 'Underline', 'Strike', '-', 'Undo', 'Redo' ),
 			array( 'Image', 'HorizontalRule', 'SpecialChar' ),
 			'/',
-			array( 'Droplets', 'Wblink', 'Pagelink', '-', 'Unlink', 'Anchor', 'Link' ),
+			array( 'Droplets', 'Pagelink', '-', 'Unlink', 'Anchor', 'Link' ),
 			array( 'Shybutton' ),
 			array( 'About' )
 		)
