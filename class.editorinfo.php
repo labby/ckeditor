@@ -69,6 +69,7 @@ class editorinfo
 			array( 'Image', 'HorizontalRule', 'SpecialChar' ),
 			'/',
 			array( 'Droplets', 'Wblink', 'Pagelink', '-', 'Unlink', 'Anchor', 'Link' ),
+			array( 'Shybutton' ),
 			array( 'About' )
 		)
 	);
