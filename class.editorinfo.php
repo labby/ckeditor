@@ -166,6 +166,51 @@ class editorinfo
 					);
 				}
 			}
+			
+			$this->__init_droplets( $db_handle );
+		}
+	}
+	
+	/**
+	 *	CK-Editor 4 comes up within a "shy"-entitie plug in that works
+	 *	together within a droplet.
+	 */
+	private function __init_droplets ( &$db_handle ) {
+		$droplet_name = "-"; // !
+		$droplet_desc = "Adds a shy-entitie.";
+		$droplet_code = "return \"&shy;\";";
+		$droplet_comment = "Adds a shy-entitie. Used e.g. by a CK-Editor-Plugin.";
+		
+		$table = "mod_droplets";
+		
+		$ignore = TABLE_PREFIX;
+		$all_tables = $db_handle->list_tables( $ignore );
+		
+		if (true == in_array( $table, $all_tables)) {
+			$query = "SELECT `name` from `".TABLE_PREFIX.$table."` where `name`='".$droplet_name."'";
+			$result = $db_handle->query( $query );
+			if ($result) {
+				if ($result->numRows() == 0) {
+					
+					$fields = array(
+						'name'	=> $droplet_name,
+						'description'	=> $droplet_desc,
+						'code' => $droplet_code,
+						'active' => 1,
+						'modified_when' => TIME(),
+						'modified_by'	=> 1,
+						'comments' => $droplet_comment
+					);
+					
+					$db_handle->query(
+						$db_handle->build_mysql_query(
+							'INSERT',
+							TABLE_PREFIX.$table,
+							$fields
+						)
+					);						
+				}
+			}
 		}
 	}
 }
