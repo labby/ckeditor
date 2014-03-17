@@ -36,10 +36,10 @@ $Config['Enabled'] = false ;
 */
 // include WB config.php file and admin class
 require_once('../../../../../../config.php');
-require_once(WB_PATH .'/framework/class.admin.php');
+require_once(LEPTON_PATH .'/framework/class.admin.php');
 
-$wb_path = str_replace('\\','/', WB_PATH);
-$wb_path = str_replace('//','/', WB_PATH);
+$lepton_path = str_replace('\\','/', LEPTON_PATH);
+$lepton_path = str_replace('//','/', LEPTON_PATH);
 
 // check if user is authenticated if WB and has permission to view MEDIA folder
 $admin = new admin('Media', 'media_view', false, false);
@@ -53,9 +53,9 @@ if(($admin->get_permission('media_view') === true))
 
 // Path to user files relative to the document root.
 // $Config['UserFilesPath'] = '/userfiles/' ;
-$Config['UserFilesPath'] = WB_URL.MEDIA_DIRECTORY.'/' ;
+$Config['UserFilesPath'] = LEPTON_URL.MEDIA_DIRECTORY.'/' ;
 // use home folder of current user as document root if available
-if(isset($_SESSION['HOME_FOLDER']) && file_exists($wb_path .MEDIA_DIRECTORY .$_SESSION['HOME_FOLDER'])){
+if(isset($_SESSION['HOME_FOLDER']) && file_exists($lepton_path .MEDIA_DIRECTORY .$_SESSION['HOME_FOLDER'])){
    $Config['UserFilesPath'] = $Config['UserFilesPath'].$_SESSION['HOME_FOLDER'];
 }
 
@@ -65,9 +65,9 @@ if(isset($_SESSION['HOME_FOLDER']) && file_exists($wb_path .MEDIA_DIRECTORY .$_S
 // Attention: The above 'UserFilesPath' must point to the same directory.
 // $Config['UserFilesAbsolutePath'] = '' ;
 
-$Config['UserFilesAbsolutePath'] = $wb_path .MEDIA_DIRECTORY.'/' ;
+$Config['UserFilesAbsolutePath'] = $lepton_path .MEDIA_DIRECTORY.'/' ;
 // use home folder of current user as document root if available
-if(isset($_SESSION['HOME_FOLDER']) && file_exists($wb_path .MEDIA_DIRECTORY .$_SESSION['HOME_FOLDER'])){
+if(isset($_SESSION['HOME_FOLDER']) && file_exists($lepton_path .MEDIA_DIRECTORY .$_SESSION['HOME_FOLDER'])){
    $Config['UserFilesAbsolutePath'] = $Config['UserFilesAbsolutePath'].$_SESSION['HOME_FOLDER'].'/';
 }
 // Due to security issues with Apache modules, it is recommended to leave the

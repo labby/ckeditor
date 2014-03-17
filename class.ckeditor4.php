@@ -169,7 +169,7 @@ class ckeditor
 		$s = "";
 		if (false == $this->script_loaded) {
 			$s .= "\n<script type='text/javascript' src='".$this->ckeditor_file."'></script>\n";
-		//	$s .= "\n<script type='text/javascript' src='".WB_URL."/modules/ckeditor_4/ckeditor/plugins/wbdroplets/droplets.php'></script>\n";
+		//	$s .= "\n<script type='text/javascript' src='".LEPTON_URL."/modules/ckeditor_4/ckeditor/plugins/wbdroplets/droplets.php'></script>\n";
 			$this->script_loaded = true;
 		}
 

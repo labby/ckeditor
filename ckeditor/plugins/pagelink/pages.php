@@ -20,8 +20,8 @@ header('Pragma: no-cache');
 */
 
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$oneback = "../";
 	$root = $oneback;
@@ -39,7 +39,7 @@ if (defined('WB_PATH')) {
 // end include class.secure.php
 
 // Create new admin object
-require(WB_PATH.'/framework/class.admin.php');
+require(LEPTON_PATH.'/framework/class.admin.php');
 $admin = new admin('Pages', 'pages_modify', false, false);
 
 if(!function_exists('cleanup')) {
@@ -103,7 +103,7 @@ while($section = $newsSections->fetchRow()){
 	$ModuleList .= "ModuleList[".$section['page_id']."] = 'News';";
 	$NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."] = new Array();";
 	while($item = $news->fetchRow()) {
-		$NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."][NewsItemsSelectBox[".$section['page_id']."].length] = new Array('".(addslashes($item['title']))."', '".WB_URL.PAGES_DIRECTORY.(addslashes($item['link'])).PAGE_EXTENSION."');";
+		$NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."][NewsItemsSelectBox[".$section['page_id']."].length] = new Array('".(addslashes($item['title']))."', '".LEPTON_URL.PAGES_DIRECTORY.(addslashes($item['link'])).PAGE_EXTENSION."');";
 	}
 }
 
@@ -113,7 +113,7 @@ while($section = $topicsSections->fetchRow()){
 	$ModuleList .= "ModuleList[".$section['page_id']."] = 'Topics';";
 	$NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."] = new Array();";
 	while($item = $topics->fetchRow()) {
-		$NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."][NewsItemsSelectBox[".$section['page_id']."].length] = new Array('".(addslashes($item['title']))."', '".WB_URL.PAGES_DIRECTORY."/topics/".(addslashes($item['link'])).PAGE_EXTENSION."');";
+		$NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."][NewsItemsSelectBox[".$section['page_id']."].length] = new Array('".(addslashes($item['title']))."', '".LEPTON_URL.PAGES_DIRECTORY."/topics/".(addslashes($item['link'])).PAGE_EXTENSION."');";
 	}
 }
 
@@ -123,7 +123,7 @@ while($section = $bakerySections->fetchRow()){
   $ModuleList .= "ModuleList[".$section['page_id']."] = 'Bakery';";
   $NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."] = new Array();";
   while($item = $bakery->fetchRow()) {
-    $NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."][NewsItemsSelectBox[".$section['page_id']."].length] = new Array('".(addslashes($item['title']))."', '".WB_URL.PAGES_DIRECTORY.(addslashes($item['link'])).PAGE_EXTENSION."');";
+    $NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."][NewsItemsSelectBox[".$section['page_id']."].length] = new Array('".(addslashes($item['title']))."', '".LEPTON_URL.PAGES_DIRECTORY.(addslashes($item['link'])).PAGE_EXTENSION."');";
   }
 }
 

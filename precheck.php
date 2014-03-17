@@ -10,8 +10,8 @@
  *
  */
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$root = "../";
 	$level = 1;
@@ -30,13 +30,13 @@ if (defined('WB_PATH')) {
 // Checking Requirements
 
 $PRECHECK['VERSION']        = array(
-    'VERSION' => '1.3.0',
+    'VERSION' => '2.0.0',
     'OPERATOR' => '>='
 );
 
 $PRECHECK['WB_ADDONS']      = array(
     'wysiwyg_admin' => array(
-        'VERSION' => '1.0.0',
+        'VERSION' => '2.0.0',
         'OPERATOR' => '>='
     ),
 );

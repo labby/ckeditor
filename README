@@ -1,9 +1,9 @@
 .. or not
 
 This project is the implementation of the CK-Editor 4-series to LEPTON 2-series.
-We are not planing to build a ckeditor 4 module for LEPTON 1-series, as for this we're using new core-constructions of LEPTON 2-series.
 
-If you want to use the CK-Editor within a package of LEPTON 1-series we recommend to use the one from LEPTON homepage http://www.lepton-cms.org/english/addons/free-addons.php  .
+If you want to use the CK-Editor 4 series within a package of LEPTON 1-series we recommend to use the one from LEPTON homepage http://www.lepton-cms.org/english/addons/free-addons.php or
+get from github: https://github.com/CKE-Addon/cke_4_1
 
 Kind regards
 

@@ -14,8 +14,8 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL|E_STRICT);
 
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$root = "../";
 	$level = 1;
@@ -38,7 +38,6 @@ $ckeditor = new ckeditor( $database );
  *	Absolute path to the ck-editor basic script.
  *
  */
-if (!defined("LEPTON_URL")) define("LEPTON_URL", WB_URL);
 $ckeditor->ckeditor_file = LEPTON_URL."/modules/ckeditor_4/ckeditor/ckeditor.js";
 
 /**
@@ -112,7 +111,7 @@ if (true === $ckeditor->wysiwyg_admin) {
  */
 	 
 /**
- *	The filebrowser are called in the include, because later on we can make switches, use WB_URL and so on
+ *	The filebrowser are called in the include, because later on we can make switches, use LEPTON_URL and so on
  *	@notice	2014-03-04	Aldus	Comment not clear! M.f.i.!
  *
  */
