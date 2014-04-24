@@ -30,12 +30,12 @@ if (defined('LEPTON_PATH')) {
 $module_directory	= 'ckeditor_4';
 $module_name		= 'CKEditor-4';
 $module_function	= 'WYSIWYG';
-$module_version		= '4.3.4.0';
+$module_version		= '4.4.0.0';
 $module_platform	= '2.x';
 $module_author		= 'erpe, Dietrich Roland Pehlke (Aldus)';
 $module_license		= '<a target="_blank" href="http://www.gnu.org/licenses/lgpl.html">LGPL</a>';
 $module_license_terms = '-';
-$module_description = 'includes CKEditor 4.3.4,CKE allows editing content and can be integrated in frontend and backend modules.';
+$module_description = 'includes CKEditor 4.4.0,CKE allows editing content and can be integrated in frontend and backend modules.';
 $module_guid 		= '76c55e3d-3ba9-4222-9db8-5aa2ba5b52ba';
 $module_home		= 'http://www.lepton-cms.org';
 
