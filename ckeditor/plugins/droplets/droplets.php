@@ -37,17 +37,17 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-if(!function_exists('cleanup')) {
-
-	function cleanup ($string) {
-		// if magic quotes on
-		if (get_magic_quotes_gpc())
-		{
-			$string = stripslashes($string);
-		}
-		return preg_replace("/\r?\n/", "\\n", $string );
-
-	} // end function cleanup
+if (!function_exists('wbdroplet_clean_str')) {
+	function wbdroplet_clean_str( &$aStr) {
+		$vars = array(
+			'"' => "\\\"",
+			'\'' => "",
+			"\n" => "<br />",
+			"\r" => ""
+		);
+		
+		return str_replace( array_keys($vars), array_values($vars), $aStr);
+	}
 }
 
 $DropletSelectBox = "\nvar DropletSelectBox = new Array( ";
@@ -61,9 +61,9 @@ if($resRec = $database->query($sql))
 {
 	while( !false == ($droplet = $resRec->fetchRow( MYSQL_ASSOC ) ) )
 	{
-		$title = cleanup($droplet['name']);
-		$desc = cleanup($droplet['description']);
-		$comments = cleanup($droplet['comments']);
+		$title		= wbdroplet_clean_str($droplet['name']);
+		$desc		= wbdroplet_clean_str($droplet['description']);
+		$comments	= wbdroplet_clean_str($droplet['comments']);
 
 		$DropletSelectBox .=  "new Array( '".$title."', '".$droplet['name']."'), ";
 		$description .=  "new Array( '".$title."', '".$desc."'), ";
