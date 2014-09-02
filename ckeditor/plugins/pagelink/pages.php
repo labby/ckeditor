@@ -50,6 +50,12 @@ if(!function_exists('cleanup')) {
 		{
 			$string = stripslashes($string);
 		}
+		$chars = array(
+			"'"	=> "\\'",
+			"\"" => "\\\"",
+			"&quot;" => "\\\""
+		);
+		$string = str_replace(array_keys($chars), array_values($chars), $string);
 		return preg_replace("/\r?\n/", "\\n", $string );
 
 	} // end function cleanup
