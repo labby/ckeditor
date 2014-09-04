@@ -177,9 +177,9 @@ class editorinfo
 	 */
 	private function __init_droplets ( &$db_handle ) {
 		$droplet_name = "-"; // !
-		$droplet_desc = "Adds a shy-entitie.";
+		$droplet_desc = "Adds a shy-entity.";
 		$droplet_code = "return \"&shy;\";";
-		$droplet_comment = "Adds a shy-entitie. Used e.g. by a CK-Editor-Plugin.";
+		$droplet_comment = "Adds a shy-entity. Used e.g. by the CK-Editor.";
 		
 		$table = "mod_droplets";
 		
