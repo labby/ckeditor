@@ -10,7 +10,7 @@
  *
  */
  
-class editorinfo
+class editorinfo_CKEDITOR_4
 {
 
 	protected $name		= "CK Editor 4";
@@ -143,7 +143,7 @@ class editorinfo
 				
 				$table = TABLE_PREFIX."mod_wysiwyg_admin";
 				
-				$query = "SELECT `id`,`skin`,`menu`,`height`,`width` from `".$table."` where `editor`='ckeditor_4'limit 0,1";
+				$query = "SELECT `id`,`skin`,`menu`,`height`,`width` from `".$table."` where `editor`='ckeditor_4' limit 0,1";
 				$result = $db_handle->query ($query );
 				if ($result->numRows() == 0) {
 									
