@@ -41,7 +41,7 @@ $module_home		= 'http://cms-lab.com';
 
 /**
  *	Detailed changelog: see the commits on github at
- *	https://github.com/CKE-Addon/ckeditor_4/commits/master
+ *	https://github.com/labby/ckeditor_4/commits/master
  *
  */
 ?>
