@@ -1,12 +1,12 @@
 <?php
 
 /**
- *	First experimental version of a (new) WYSIWYG-Admin support (-class).
- *	Some informations about skin(-s) and used toolbar(-s) and there definations inside this file.
- *
- *	@version	0.1.2
- *	@date		2014-03-08
- *	@author		Dietrich Roland Pehlke (CMS-LAB)
+ *	@module			ckeditor
+ *	@version		see info.php of this module
+ *	@authors		Dietrich Roland Pehlke, erpe
+ *	@copyright		2012 - 2015 Dietrich Roland Pehlke, erpe
+ *	@license		GNU General Public License
+ *	@license terms	see info.php of this module
  *
  */
  
