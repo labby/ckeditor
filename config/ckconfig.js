@@ -57,7 +57,8 @@ config.toolbar = "Basic";
 	config.format_tags = 'p;h1;h2;h3;pre';
 
 	// Make dialogs simpler.
-	config.removeDialogTabs = 'image:advanced;link:advanced';
+	// config.removeDialogTabs = 'image:advanced;link:advanced';
+    config.removeDialogTabs = 'link:advanced';
     
     config.entities_latin = false;
 
