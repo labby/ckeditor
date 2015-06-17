@@ -65,7 +65,7 @@ $ckeditor->config['extraPlugins'] = 'droplets,pagelink,shybutton';
  *	Getting skin and Toolbar (-def.) from the 
  */
 require_once( dirname(__FILE__)."/class.editorinfo.php" );
-$ck_info = new editorinfo();
+$ck_info = new editorinfo_CKEDITOR_4();
 
 if (true === $ckeditor->wysiwyg_admin) {
 	
