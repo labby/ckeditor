@@ -30,7 +30,7 @@ if (defined('LEPTON_PATH')) {
 $module_directory	= 'ckeditor_4';
 $module_name		= 'CKEditor-4';
 $module_function	= 'WYSIWYG';
-$module_version		= '4.5.3.0';
+$module_version		= '4.5.4.0';
 $module_platform	= '2.x';
 $module_author		= 'erpe, Dietrich Roland Pehlke (Aldus)';
 $module_license		= '<a target="_blank" href="http://www.gnu.org/licenses/lgpl.html">LGPL</a>';
