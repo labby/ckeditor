@@ -48,9 +48,9 @@ class ckeditor
 			'/editor/editor.templates.js'
 		),
 		'customConfig' => Array(
-			'/wb_ckconfig.js',
-			'/js/wb_ckconfig.js',
-			'/editor/wb_ckconfig.js'
+			'/ckconfig.js',
+			'/js/ckconfig.js',
+			'/editor/ckconfig.js'
 		)
 	);
 
@@ -169,7 +169,6 @@ class ckeditor
 		$s = "";
 		if (false == $this->script_loaded) {
 			$s .= "\n<script type='text/javascript' src='".$this->ckeditor_file."'></script>\n";
-		//	$s .= "\n<script type='text/javascript' src='".LEPTON_URL."/modules/ckeditor_4/ckeditor/plugins/wbdroplets/droplets.php'></script>\n";
 			$this->script_loaded = true;
 		}
 

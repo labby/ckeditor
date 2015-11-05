@@ -58,7 +58,7 @@ $ckeditor->config['language'] = strtolower( LANGUAGE );
  */
 $ckeditor->config['contentsCss'] = '';
 
-$ckeditor->config['extraPlugins'] = 'droplets,pagelink,shybutton';
+$ckeditor->config['extraPlugins'] = 'droplets,pagelink,shybutton,justify';
 
 /**	*******************************************
  *	First steps for WYSIWYG-Admin support.

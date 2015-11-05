@@ -38,5 +38,5 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	
 	// extraPlugins configuration setting
-	config.extraPlugins = 'justify';
+	//config.extraPlugins = "droplets,pagelink,wblink,shybutton,justify";
 };

@@ -64,5 +64,5 @@ config.toolbar = "Basic";
     config.entities_latin = false;
 
 	// extraPlugins configuration setting
-	config.extraPlugins = "droplets,pagelink,wblink,shybutton,justify";
+	//config.extraPlugins = "droplets,pagelink,wblink,shybutton,justify";
 };
