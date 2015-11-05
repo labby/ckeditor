@@ -46,6 +46,7 @@ config.toolbar = "Basic";
 		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
 		{ name: 'styles' },
 		{ name: 'colors' },
+		{ name: 'alignment', groups : [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
 		{ name: 'about' }
 	];
 
