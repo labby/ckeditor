@@ -1,5 +1,4 @@
 ### Preface
-.. or not
 
 This project is the implementation of the CK-Editor 4-series to LEPTON 2-series.
 
