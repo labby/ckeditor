@@ -9,6 +9,7 @@
  *	@license terms	see info.php of this module
  *
  */
+
 // include class.secure.php to protect this file and the whole CMS!
 if (defined('LEPTON_PATH')) {	
 	include(LEPTON_PATH.'/framework/class.secure.php'); 
@@ -35,7 +36,7 @@ $module_platform	= '2.x';
 $module_author		= 'erpe, Dietrich Roland Pehlke (Aldus)';
 $module_license		= '<a target="_blank" href="http://www.gnu.org/licenses/lgpl.html">LGPL</a>';
 $module_license_terms = '-';
-$module_description = 'includes latest ( see release no ) CKEditor,CKE allows editing content and can be integrated in frontend and backend modules.';
+$module_description = 'Includes latest (see release no) CKEditor; CKE allows editing content and can be integrated in frontend and backend modules.';
 $module_guid 		= '76c55e3d-3ba9-4222-9db8-5aa2ba5b52ba';
 $module_home		= 'http://cms-lab.com';
 

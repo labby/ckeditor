@@ -58,7 +58,15 @@ $ckeditor->config['language'] = strtolower( LANGUAGE );
  */
 $ckeditor->config['contentsCss'] = '';
 
+/**
+ *	Add extra plug-ins.
+ */
 $ckeditor->config['extraPlugins'] = 'droplets,pagelink,shybutton,justify';
+
+/**
+ *	Try to force the ckeditor not to use entities!
+ */
+$ckeditor->config['entities_latin'] = false;
 
 /**	*******************************************
  *	First steps for WYSIWYG-Admin support.

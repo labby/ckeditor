@@ -9,23 +9,45 @@
  *	@license terms	see info.php of this module
  *
  */
- 
+
+/**
+ *	Class for the wysiwyg-admin.
+ */ 
 class editorinfo_CKEDITOR_4
 {
 
+	/**
+	 *	@var	string	Holds the name of the editor - display inside wysiwyg-admin.	
+	 */
 	protected $name		= "CK Editor 4";
 	
+	/**
+	 *	@var	string	Holds the guid of this class.
+	 */
 	protected $guid		= "E3355C6B-794A-4E8C-A505-75A0C2AEFA4F";
 
+	/**
+	 *	@var	string	Holds the current version of this class.
+	 */
 	protected $version	= "0.1.2";
 
+	/**
+	 *	@var	string	Holds the (last) author of this class.
+	 */
 	protected $author	= "Dietrich Roland Pehkle (Aldus)";
 	
+	/**
+	 *	@var	array	Holds the supported skins of this wysiwyg-editor.
+	 */
 	public $skins = array(
 		'moono',
 		'moonocolor'
 	);
 	
+	
+	/**
+	 *	@var	array	Holds the toolbar-definitions of this wysiwyg-editor.
+	 */
 	public $toolbars = array(
 		
 		'Full'	=> 	array(
@@ -74,14 +96,26 @@ class editorinfo_CKEDITOR_4
 		)
 	);
 	
+	/**
+	 *	@var	string	Holds the default width of this editor.
+	 */
 	public $default_width = "100%";
 	
+	/**
+	 *	@var	string	Holds the default height of the editor.
+	 */
 	public $default_height = "250px";
 	
+	/**
+	 *	The constructor of the class.
+	 */
 	public function __construct() {
 	
 	}
 	
+	/**
+	 *	The destructor of this class.
+	 */
 	public function __destruct() {
 	
 	}

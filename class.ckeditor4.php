@@ -10,11 +10,18 @@
  *
  */
 
-
 class ckeditor
 {
+	/**
+	 *	@var	string	Holds the guid of this class.
+	 */
 	private $guid = "244312D5-DB24-4FBA-99A4-D855EA45E77A";
 
+	/**
+	 *	@var	array	Holds the basic configuration-values for the CK-Editor module.
+	 *	@access	public
+	 *
+	 */
 	public $config = array(
 		'width'	=> "100%",
 		'height' => "250px",
@@ -29,6 +36,7 @@ class ckeditor
 	/**
 	 *	@var	array	More-dimensional array for the 'look-up' paths for
 	 *					editor.css, editor.style.js, templates.js and the config.js
+	 *	@access	public
 	 *
 	 */
 	public $files = array(
@@ -56,40 +64,49 @@ class ckeditor
 
 	/**
 	 *	@var	string	An internal template-string for the generated textarea.
+	 *	@access	public
 	 *
 	 */
 	public $textarea = "\n<textarea name='%s' id='%s' width='%s' height='%s' cols='8' rows='8'>%s</textarea>\n";
 	
 	/**
 	 *	@var	string	Path to the basic script file of CkEditor.js
+ 	 *	@access	public
 	 *
 	 */
 	public $ckeditor_file = "";
 	
-	
+	/**
+	 *	@var	boolean	Holds whenever the scrip/class is loaded.
+	 *	@access	private
+	 */
 	private $script_loaded = false;
 	
 	/**
 	 *	Boolean to force given height and width from the function call instead of the current settings here.
+ 	 *	@access	public
 	 *
 	 */
 	public $force = false;
 	
 	/**
 	 *	Boolean for WYSIWYG Admin support (avaible or not)
+	 *	@access	public
 	 *
 	 */
 	public $wysiwyg_admin = false;
 	
 	/**
 	 *	Private DB handle
+	 *	@access	private
 	 *
 	 */
 	private $db = NULL;
 	
 	/**
 	 *	The constructor of the class
-	 *
+	 *	@access	public
+	 *	@param	object	Any valid instance of a database connector.
 	 */
 	public function __construct( &$db_ref ) {
 		$this->db = $db_ref;
@@ -112,6 +129,7 @@ class ckeditor
 	
 	/**
 	 *	@param	string	Any HTML-Source, pass by reference
+	 *	@access	public
 	 *
 	 */
 	public function reverse_htmlentities(&$html_source) {
@@ -123,14 +141,21 @@ class ckeditor
 		);
     }
 
+	/**
+	 *	Build the JS-Script ans return it.
+	 *	@return	string	The generated js-config (HTML-) string.
+	 */
 	public function toHTML() {
 		$html  = $this->__build_textarea();
-		# $html  .= $this->__build_script();
-		$html .= $this->__build_replace(); # experimental use of "CKEDITOR.replace" ....
+		$html .= $this->__build_replace(); // use of "CKEDITOR.replace" ....
 		
 		return $html;
 	}
 	
+	/**
+	 *	Internal - build the text-area part
+	 *	@return	string	The generated HTML-Code.	
+	 */
 	private function __build_textarea() {
 		return sprintf(
 			$this->textarea,
@@ -142,28 +167,10 @@ class ckeditor
 		);
 	}
 	
-	private function __build_script() {
-		$s = "";
-		if (false == $this->script_loaded) {
-			$s .= "\n<script type='text/javascript' src='".$this->ckeditor_file."'></script>\n";
-			$this->script_loaded = true;
-		}
-
-		$s .= "
-			<script>
-		";
-				
-		foreach( $this->config as $key => $value ) {
-			$s .= "CKEDITOR.config['".$key."'] = ".$this->jsEncode( $value ).";\n";
-		}
-		
-		$s .= "CKEDITOR.replace( '". $this->config['id']. "', {customConfig: '". $this->config['customConfig']."'});
-		</script>
-		";
-		
-		return $s;
-	}
-	
+	/**
+	 *	Build the js for the editor.
+	 *	@return	string	The generated code.
+	 */
 	private function __build_replace() {
 	
 		$s = "";
