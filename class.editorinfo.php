@@ -34,7 +34,7 @@ class editorinfo_CKEDITOR_4
 	/**
 	 *	@var	string	Holds the (last) author of this class.
 	 */
-	protected $author	= "Dietrich Roland Pehkle (Aldus)";
+	protected $author	= "Dietrich Roland Pehlke (Aldus)";
 	
 	/**
 	 *	@var	array	Holds the supported skins of this wysiwyg-editor.
