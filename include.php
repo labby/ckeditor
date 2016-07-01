@@ -91,7 +91,7 @@ if (true === $ckeditor->wysiwyg_admin) {
 		'`editor` = \''.WYSIWYG_EDITOR.'\''
 	);
 	$result = $database->query( $q );
-	$wysiwyg_info = $result->fetchRow( MYSQL_ASSOC );
+	$wysiwyg_info = $result->fetchRow( PDO::FETCH_ASSOC );
 
 	/**
 	 *	Skin
