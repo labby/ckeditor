@@ -91,6 +91,7 @@ if (true === $ckeditor->wysiwyg_admin) {
 		'`editor` = \''.WYSIWYG_EDITOR.'\''
 	);
 	$result = $database->query( $q );
+//	$wysiwyg_info = $result->fetchRow( MYSQL_ASSOC );
 	$wysiwyg_info = $result->fetchRow( PDO::FETCH_ASSOC );
 
 	/**
@@ -146,7 +147,7 @@ $ckeditor->config['filebrowserFlashUploadUrl'] = $uploadPath.'Flash';
  *	@param	string	Optional the height of the editor - default is '250px'
  *
  */
-function show_wysiwyg_editor($name, $id, $content, $width = '100%', $height = '250px') {
+function show_wysiwyg_editor($name, $id, $content, $width = '100%', $height = '250px', $prompt = true) {
 	global $ckeditor;
 	
 	if (true === $ckeditor->force) {
@@ -158,6 +159,10 @@ function show_wysiwyg_editor($name, $id, $content, $width = '100%', $height = '2
 	$ckeditor->config['name'] = $name;
 	$ckeditor->config['content'] = $content;
 	
-	echo $ckeditor->toHTML();
+	if(true === $prompt) {
+		echo $ckeditor->toHTML();
+	} else {
+		return $ckeditor->toHTML();
+	}
 }
 ?>
