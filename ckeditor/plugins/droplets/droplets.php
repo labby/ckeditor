@@ -57,18 +57,18 @@ $usage = "\nvar DropletUsageBox = new Array( ";
 $sql  = 'SELECT * FROM `'.TABLE_PREFIX.'mod_droplets` ';
 $sql .= 'WHERE `active`=1 ';
 $sql .= 'ORDER BY `name` ASC';
-if($resRec = $database->query($sql))
-{
-	while( !false == ($droplet = $resRec->fetchRow( MYSQL_ASSOC ) ) )
-	{
-		$title		= wbdroplet_clean_str($droplet['name']);
-		$desc		= wbdroplet_clean_str($droplet['description']);
-		$comments	= wbdroplet_clean_str($droplet['comments']);
 
-		$DropletSelectBox .=  "new Array( '".$title."', '".$droplet['name']."'), ";
-		$description .=  "new Array( '".$title."', '".$desc."'), ";
-		$usage .=  "new Array( '".$title."', '".$comments."'), ";
-	}
+$all_droplets = array();
+$database->execute_query( $sql, true, $all_droplets, true );
+
+foreach($all_droplets as $droplet) {
+	$title		= wbdroplet_clean_str($droplet['name']);
+	$desc		= wbdroplet_clean_str($droplet['description']);
+	$comments	= wbdroplet_clean_str($droplet['comments']);
+
+	$DropletSelectBox .=  "new Array( '".$title."', '".$droplet['name']."'), ";
+	$description .=  "new Array( '".$title."', '".$desc."'), ";
+	$usage .=  "new Array( '".$title."', '".$comments."'), ";
 }
 	
 $DropletSelectBox = substr($DropletSelectBox,0,-2);
