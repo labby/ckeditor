@@ -73,23 +73,25 @@ function getPageTree($parent)
     $sql .= ((PAGE_TRASH != 'inline') ?  'AND `visibility` != \'deleted\' ' : ' ');
 	$sql .= 'ORDER BY `position` ASC';
 
-	if($resPage = $database->query($sql))
-	{
-		while( !false == ($page = $resPage->fetchRow() ) )
-		{
-			if(!$admin->page_is_visible($page)) { continue; }
-			$menu_title = cleanup( $page['menu_title'] );
-			$page_title = cleanup( $page['page_title'] );
-			// Stop users from adding pages with a level of more than the set page level limit
-			if($page['level']+1 <= PAGE_LEVEL_LIMIT)
-            {
-				$title_prefix = '';
-				for($i = 1; $i <= $page['level']; $i++) { $title_prefix .= ' - '; }
-		        $InternPagesSelectBox .= "new Array( '".$title_prefix.$menu_title."', '[wblink".$page['page_id']."]'), ";
-		        $PagesTitleSelectBox .= "new Array( '".$page_title."', '[wblink".$page['page_id']."]'), ";
+	$all_pages = array();
+	$database->execute_query( $sql, true, $all_pages, true);
+	
+	foreach($all_pages as $page) {
+		if(!$admin->page_is_visible($page)) { continue; }
+		
+		$menu_title = cleanup( $page['menu_title'] );
+		$page_title = cleanup( $page['page_title'] );
+		// Stop users from adding pages with a level of more than the set page level limit
+		if($page['level']+1 <= PAGE_LEVEL_LIMIT)
+        {
+			$title_prefix = '';
+			for($i = 1; $i <= $page['level']; $i++) {
+				$title_prefix .= ' - ';
 			}
-		getPageTree($page['page_id']);
+			$InternPagesSelectBox .= "new Array( '".$title_prefix.$menu_title."', '[wblink".$page['page_id']."]'), ";
+			$PagesTitleSelectBox .= "new Array( '".$page_title."', '[wblink".$page['page_id']."]'), ";
 		}
+		getPageTree($page['page_id']);
 	}
 }
 
@@ -100,37 +102,77 @@ $PagesTitleSelectBox = substr($PagesTitleSelectBox,0,-2);
 echo $InternPagesSelectBox .= " );\n";
 echo $PagesTitleSelectBox .= " );\n";
 
-//generate news lists
+//	generate news lists
 $NewsItemsSelectBox = "var NewsItemsSelectBox = new Array();";
 $ModuleList = "var ModuleList = new Array();";
-$newsSections = $database->query("SELECT * FROM ".TABLE_PREFIX."sections WHERE module = 'news'");
-while($section = $newsSections->fetchRow()){
-	$news = $database->query("SELECT title, link FROM ".TABLE_PREFIX."mod_news_posts WHERE active=1 AND section_id = ".$section['section_id']);
+
+$newsSections = array();
+$database->execute_query(
+	"SELECT * FROM `".TABLE_PREFIX."sections` WHERE `module` = 'news'",
+	true,
+	$newsSections,
+	true
+);
+foreach($newsSections as $section) {
+	$news = array();
+	$database->execute_query(
+		"SELECT `title`, `link` FROM `".TABLE_PREFIX."mod_news_posts` WHERE `active`=1 AND `section_id` = ".$section['section_id'],
+		true,
+		$news,
+		true
+	);
+	
 	$ModuleList .= "ModuleList[".$section['page_id']."] = 'News';";
 	$NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."] = new Array();";
-	while($item = $news->fetchRow()) {
+	foreach($news as $item) {
 		$NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."][NewsItemsSelectBox[".$section['page_id']."].length] = new Array('".(addslashes($item['title']))."', '".LEPTON_URL.PAGES_DIRECTORY.(addslashes($item['link'])).PAGE_EXTENSION."');";
 	}
 }
 
-$topicsSections = $database->query("SELECT * FROM ".TABLE_PREFIX."sections WHERE module = 'topics'");
-while($section = $topicsSections->fetchRow()){
-	$topics = $database->query("SELECT title, link FROM ".TABLE_PREFIX."mod_topics WHERE active > 0 AND section_id = ".$section['section_id']);
+//	topics
+$topicsSections = array();
+$database->execute_query(
+	"SELECT * FROM `".TABLE_PREFIX."sections` WHERE `module` = 'topics'",
+	true,
+	$topicsSections,
+	true
+);
+foreach($topicsSections as $section) {
+	$topics = array();
+	$database->execute_query(
+		"SELECT `title`, `link` FROM `".TABLE_PREFIX."mod_topics` WHERE `active` > 0 AND `section_id` = ".$section['section_id'],
+		true,
+		$topics,
+		true
+	);
 	$ModuleList .= "ModuleList[".$section['page_id']."] = 'Topics';";
 	$NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."] = new Array();";
-	while($item = $topics->fetchRow()) {
+	foreach($topics as $item) {
 		$NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."][NewsItemsSelectBox[".$section['page_id']."].length] = new Array('".(addslashes($item['title']))."', '".LEPTON_URL.PAGES_DIRECTORY."/topics/".(addslashes($item['link'])).PAGE_EXTENSION."');";
 	}
 }
 
-$bakerySections = $database->query("SELECT * FROM ".TABLE_PREFIX."sections WHERE module = 'bakery'");
-while($section = $bakerySections->fetchRow()){
-  $bakery = $database->query("SELECT title, link FROM ".TABLE_PREFIX."mod_bakery_items WHERE active=1 AND section_id = ".$section['section_id']);
-  $ModuleList .= "ModuleList[".$section['page_id']."] = 'Bakery';";
-  $NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."] = new Array();";
-  while($item = $bakery->fetchRow()) {
-    $NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."][NewsItemsSelectBox[".$section['page_id']."].length] = new Array('".(addslashes($item['title']))."', '".LEPTON_URL.PAGES_DIRECTORY.(addslashes($item['link'])).PAGE_EXTENSION."');";
-  }
+//	Bakery
+$bakerySections = array();
+$database->execute_query(
+	"SELECT * FROM `".TABLE_PREFIX."sections` WHERE `module` = 'bakery'",
+	true,
+	$bakerySections,
+	true
+);
+foreach( $bakerySections as $section) {
+	$bakery = array();
+	$database->execute_query(
+  		"SELECT `title`, `link` FROM `".TABLE_PREFIX."mod_bakery_items` WHERE `active`=1 AND `section_id` = ".$section['section_id'],
+  		true,
+  		$bakery,
+  		true
+	);
+	$ModuleList .= "ModuleList[".$section['page_id']."] = 'Bakery';";
+	$NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."] = new Array();";
+	foreach( $bakery as $item ) {
+	    $NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."][NewsItemsSelectBox[".$section['page_id']."].length] = new Array('".(addslashes($item['title']))."', '".LEPTON_URL.PAGES_DIRECTORY.(addslashes($item['link'])).PAGE_EXTENSION."');";
+	}
 }
 
 echo $NewsItemsSelectBox;
