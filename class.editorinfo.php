@@ -41,7 +41,8 @@ class editorinfo_CKEDITOR_4
 	 */
 	public $skins = array(
 		'moono',
-		'moonocolor'
+		'moonocolor',
+		'moono-lisa'
 	);
 	
 	

@@ -70,7 +70,7 @@ $ckeditor->config['entities_latin'] = false;
 
 /**	*******************************************
  *	First steps for WYSIWYG-Admin support.
- *	Getting skin and Toolbar (-def.) from the 
+ *	Getting skin and toolbar (-def.) from class.editorinfo 
  */
 require_once( dirname(__FILE__)."/class.editorinfo.php" );
 $ck_info = new editorinfo_CKEDITOR_4();

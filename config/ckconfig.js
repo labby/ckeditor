@@ -14,7 +14,7 @@
 *
 * --------------------------------------------------
 *
-* Note: Some CKEditor configs are set in _yourwb_/modules/ckeditor/include.php
+* Note: Some CKEditor configs are set in /modules/ckeditor/include.php
 * 
 */
 
