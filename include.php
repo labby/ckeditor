@@ -82,21 +82,17 @@ if (true === $ckeditor->wysiwyg_admin) {
 	 *
 	 *
 	 */
-	$fields = array( 'skin', 'menu', 'width', 'height' );
-
-	$q = $database->build_mysql_query(
-		'SELECT',
-		TABLE_PREFIX."mod_wysiwyg_admin",
-		$fields,	
-		'`editor` = \''.WYSIWYG_EDITOR.'\''
+	$wysiwyg_info = array();
+	$database->execute_query(
+		"SELECT `skin`,`menu`,`width`,`height` FROM `".TABLE_PREFIX."mod_wysiwyg_admin` WHERE `editor` = '".WYSIWYG_EDITOR."'",
+		true,
+		$wysiwyg_info,
+		false
 	);
-	$result = $database->query( $q );
-//	$wysiwyg_info = $result->fetchRow( MYSQL_ASSOC );
-	$wysiwyg_info = $result->fetchRow( PDO::FETCH_ASSOC );
-
+	
 	/**
 	 *	Skin
-	 *	Possibilities are 'moono' or 'moonocolor'.
+	 *	Possibilities are 'moono', 'moonocolor' or 'moono-lisa'.
 	 */
 	$ckeditor->config['skin'] = $wysiwyg_info['skin'];
 
