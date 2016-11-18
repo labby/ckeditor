@@ -4,7 +4,7 @@
  *	@module			ckeditor
  *	@version		see info.php of this module
  *	@authors		Dietrich Roland Pehlke, erpe
- *	@copyright		2012 - 2016 Dietrich Roland Pehlke, erpe
+ *	@copyright		2012 - 2017 Dietrich Roland Pehlke, erpe
  *	@license		GNU General Public License
  *	@license terms	see info.php of this module
  *
