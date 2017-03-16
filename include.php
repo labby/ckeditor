@@ -56,7 +56,7 @@ $ckeditor->config['language'] = strtolower( LANGUAGE );
  *	Load the frontend css
  *
  */
-$ckeditor->config['contentsCss'] = '';
+$ckeditor->config['contentsCss'] = $ckeditor->resolve_path();
 
 /**
  *	Add extra plug-ins.

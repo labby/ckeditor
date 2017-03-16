@@ -233,5 +233,38 @@ class ckeditor
 
 		return '"' . str_replace(array("\\", "/", "\n", "\t", "\r", "\x08", "\x0c", '"'), array('\\\\', '\\/', '\\n', '\\t', '\\r', '\\b', '\\f', '\"'), $val) . '"';
 	}
+	
+	/**
+	 *	Looking for paths inside the current frontend-template.
+	 *
+	 *	@param string 	A valid "key" from the internal files-array.
+	 *					(contentCss, stylesSet, template_files, customConfig)
+	 *	@return string	Absolute (LEPTON_URL) to the template-file or an emty string.
+	 *
+	 */
+	public function resolve_path($sTheme="contentsCss")
+	{
+		global $database, $page_id;
+		
+		$paths = &$this->files[$sTheme];
+		$result = array();
+		$database->execute_query(
+			"SELECT `template` FROM `".TABLE_PREFIX."pages` WHERE `page_id`=".$page_id."0000",
+			true,
+			$result,
+			false
+		);
+		
+		$lookup_path = LEPTON_PATH."/templates/".( (isset($result['template']) && ($result['template'] != "" ) ) ? $result['template'] : DEFAULT_TEMPLATE );
+		foreach($paths as &$path) 
+		{
+			$filename = $lookup_path.$path;
+			if(file_exists($filename))
+			{
+				return str_replace(LEPTON_PATH, LEPTON_URL, $filename);
+			}
+		}
+		return "";
+	}
 }
 ?>
