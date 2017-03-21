@@ -61,7 +61,7 @@ $ckeditor->config['contentsCss'] = $ckeditor->resolve_path();
 /**
  *	Add extra plug-ins.
  */
-$ckeditor->config['extraPlugins'] = 'droplets,pagelink,shybutton,justify';
+$ckeditor->config['extraPlugins'] = 'droplets,pagelink,shybutton,justify,colorbutton';
 
 /**
  *	Try to force the ckeditor not to use entities!

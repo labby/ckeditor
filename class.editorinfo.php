@@ -92,7 +92,7 @@ class editorinfo_CKEDITOR_4
 			array( 'Image', 'HorizontalRule', 'SpecialChar' ),
 			'/',
 			array( 'Droplets', 'Pagelink', '-', 'Unlink', 'Anchor', 'Link' ),
-			array( 'Shybutton' ),
+			array( 'Shybutton', 'TextColor'),
 			array( 'About' )
 		)
 	);
