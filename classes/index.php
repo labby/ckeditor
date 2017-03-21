@@ -27,18 +27,4 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-// Checking Requirements
-
-$PRECHECK['VERSION']        = array(
-    'VERSION' => '2.3.0',
-    'OPERATOR' => '>='
-);
-
-$PRECHECK['WB_ADDONS']      = array(
-    'wysiwyg_admin' => array(
-        'VERSION' => '2.0.0',
-        'OPERATOR' => '>='
-    ),
-);
-
 ?>

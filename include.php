@@ -31,8 +31,7 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-require_once( dirname(__FILE__)."/class.ckeditor4.php");
-$ckeditor = new ckeditor( $database );
+$ckeditor = new ckeditor_4( $database );
 
 /**
  *	Absolute path to the ck-editor basic script.

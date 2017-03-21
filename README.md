@@ -5,7 +5,7 @@ This project is the implementation of the CK-Editor 4-series to LEPTON 2-series.
 
 #### Requirements
 
-* [LEPTON CMS][1], Version >= 2.0.0
+* [LEPTON CMS][1], Version >= 2.3.0
 
 
 #### Installation

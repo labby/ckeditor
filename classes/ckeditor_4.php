@@ -1,21 +1,12 @@
 <?php
 
-/**
- *	@module			ckeditor
- *	@version		see info.php of this module
- *	@authors		Dietrich Roland Pehlke, erpe
- *	@copyright		2012-2017 Dietrich Roland Pehlke, erpe
- *	@license		GNU General Public License
- *	@license terms	see info.php of this module
- *
- */
-
-class ckeditor
+class ckeditor_4
 {
+
 	/**
 	 *	@var	string	Holds the guid of this class.
 	 */
-	private $guid = "244312D5-DB24-4FBA-99A4-D855EA45E77A";
+	private $guid = "4B6C3AF1-DAF7-4761-ACDF-9D4ED96C2275";
 
 	/**
 	 *	@var	array	Holds the basic configuration-values for the CK-Editor module.
@@ -266,5 +257,5 @@ class ckeditor
 		}
 		return "";
 	}
+
 }
-?>
