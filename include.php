@@ -31,6 +31,9 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
+//	Aldus 2017-03-21 - Fallback to L* 2.3.x
+require_once __DIR__."/classes/ckeditor_4.php";
+
 $ckeditor = new ckeditor_4( $database );
 
 /**
