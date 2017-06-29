@@ -43,7 +43,7 @@ if (!function_exists('wbdroplet_clean_str')) {
 			'"' => "\\\"",
 			'\'' => "",
 			"\n" => "<br />",
-			"\r" => ""
+			"\r" => "<br />"
 		);
 		
 		return str_replace( array_keys($vars), array_values($vars), $aStr);

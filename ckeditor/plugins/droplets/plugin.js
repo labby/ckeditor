@@ -72,7 +72,7 @@ CKEDITOR.plugins.droplets = {
 
 		if ( range ) {
 			range.shrink( CKEDITOR.SHRINK_TEXT );
-			content = editor.elementPath( range.getCommonAncestor() ).elements[0].$.innerHTML;
+			var content = editor.elementPath( range.getCommonAncestor() ).elements[0].$.innerHTML;
 			content = content.match(/\[\[([^\]]*)\]\]/);
 			if (content === null)		return null
 			else return 	content[1];
