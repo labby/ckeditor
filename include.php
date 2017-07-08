@@ -31,8 +31,6 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-//	Aldus 2017-03-21 - Fallback to L* 2.3.x
-require_once __DIR__."/classes/ckeditor_4.php";
 
 $ckeditor = new ckeditor_4( $database );
 
@@ -119,38 +117,26 @@ if (true === $ckeditor->wysiwyg_admin) {
 	 
 /**
  *	The filebrowser are called in the include, because later on we can make switches, use LEPTON_URL and so on
- *	@notice	2014-03-04	Aldus	Comment not clear! M.f.i.!
  *
  */
-$ckeditor->basePath = LEPTON_URL."/modules/ckeditor_4/ckeditor/";
-
-$connectorPath = $ckeditor->basePath.'filemanager/connectors/php/connector.php';
-$ckeditor->config['filebrowserBrowseUrl'] = $ckeditor->basePath.'filemanager/browser/default/browser.html?Connector='.$connectorPath;
-$ckeditor->config['filebrowserImageBrowseUrl'] = $ckeditor->basePath.'filemanager/browser/default/browser.html?Type=Image&Connector='.$connectorPath;
-$ckeditor->config['filebrowserFlashBrowseUrl'] = $ckeditor->basePath.'filemanager/browser/default/browser.html?Type=Flash&Connector='.$connectorPath;
-
-$ckeditor->config['uploader'] = true;
-
-$uploadPath = $ckeditor->basePath.'filemanager/connectors/php/upload.php?Type=';
-$ckeditor->config['filebrowserUploadUrl'] = $uploadPath.'File';
-$ckeditor->config['filebrowserImageUploadUrl'] = $uploadPath.'Image';
-$ckeditor->config['filebrowserFlashUploadUrl'] = $uploadPath.'Flash';
 
 // [4]	Looking for the repositive filemanager
 $temp_path = LEPTON_PATH."/modules/lib_r_filemanager/library.php";
-if(file_exists($temp_path))
+if(!file_exists($temp_path))
 {
-	// [4.1] Include the library.php first for internal initialisation of the reposotive filemanager.
-	require_once $temp_path;
-	
-	// [4.2] Aldus: keep in mind that we have to use absolute paths to the repositive filemanager here!
-	$temp_path = str_replace( LEPTON_PATH, LEPTON_URL, dirname($temp_path) );
-	
-	// [4.3] Aldus: keep in mind that $akey is declared inside the library.php of the repositive filemanager! 
-	$ckeditor->config['filebrowserBrowseUrl'] = $temp_path.'/filemanager/dialog.php?type=2&editor=ckeditor&&akey='.$akey;
-	$ckeditor->config['filebrowserUploadUrl'] = $temp_path.'/filemanager/dialog.php?type=2&editor=ckeditor&&akey='.$akey;
-	$ckeditor->config['filebrowserImageBrowseUrl'] = $temp_path.'/filemanager/dialog.php?type=1&&editor=ckeditor&akey='.$akey;
+die('WARNING: You need lib_r_filemanager to run this release of CKEditor!');
 }
+
+// [4.1] Include the library.php first for internal initialisation of the reposotive filemanager.
+require_once $temp_path;
+	
+// [4.2] Aldus: keep in mind that we have to use absolute paths to the repositive filemanager here!
+$temp_path = str_replace( LEPTON_PATH, LEPTON_URL, dirname($temp_path) );
+	
+// [4.3] Aldus: keep in mind that $akey is declared inside the library.php of the repositive filemanager! 
+$ckeditor->config['filebrowserBrowseUrl'] = $temp_path.'/filemanager/dialog.php?type=2&editor=ckeditor&&akey='.$akey;
+$ckeditor->config['filebrowserUploadUrl'] = $temp_path.'/filemanager/dialog.php?type=2&editor=ckeditor&&akey='.$akey;
+$ckeditor->config['filebrowserImageBrowseUrl'] = $temp_path.'/filemanager/dialog.php?type=1&&editor=ckeditor&akey='.$akey;
 
 /**
  *	Function called by parent, default by the wysiwyg-module
