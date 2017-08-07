@@ -1,16 +1,16 @@
-### CKEditor 4series
+### CKEditor
 ============
 
-This project is the implementation of the CK-Editor 4-series to LEPTON 2-series.
+This project is the implementation of the CK-Editor to LEPTON CMS.
 
 #### Requirements
 
-* [LEPTON CMS][1], Version >= 2.3.0
+* [LEPTON CMS][1], Version >= 3.x
 
 
 #### Installation
 
-* download latest [.zip] [2] installation archive
+* download latest [.zip][2] installation archive
 * in CMS backend select the file from "Add-ons" -> "Modules" -> "Install module"
 
 #### Notice
