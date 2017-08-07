@@ -19,7 +19,7 @@ class editorinfo_CKEDITOR
 	/**
 	 *	@var	string	Holds the name of the editor - display inside wysiwyg-admin.	
 	 */
-	protected $name		= "CK Editor 4";
+	protected $name		= "CKEditor";
 	
 	/**
 	 *	@var	string	Holds the guid of this class.
@@ -29,7 +29,7 @@ class editorinfo_CKEDITOR
 	/**
 	 *	@var	string	Holds the current version of this class.
 	 */
-	protected $version	= "0.1.2";
+	protected $version	= "4.7.1.2.0";
 
 	/**
 	 *	@var	string	Holds the (last) author of this class.
@@ -44,7 +44,6 @@ class editorinfo_CKEDITOR
 		'moonocolor',
 		'moono-lisa'
 	);
-	
 	
 	/**
 	 *	@var	array	Holds the toolbar-definitions of this wysiwyg-editor.
@@ -122,6 +121,8 @@ class editorinfo_CKEDITOR
 	}
 	
 	/**
+     *  Generates a "select" (HTML-)tag
+     *
 	 *	@param	string	What (toolbars or skins)
 	 *	@param	string	Name of the select
 	 *	@param	string	Name of the selected item.
@@ -178,28 +179,32 @@ class editorinfo_CKEDITOR
 				
 				$table = TABLE_PREFIX."mod_wysiwyg_admin";
 				
-				$query = "SELECT `id`,`skin`,`menu`,`height`,`width` from `".$table."` where `editor`='ckeditor' limit 0,1";
-				$result = $db_handle->query ($query );
-				if ($result->numRows() == 0) {
+				$temp_info = array();
+				$db_handle->execute_query(
+				    "SELECT `id`,`skin`,`menu`,`height`,`width` from `".$table."` where `editor`='ckeditor' limit 0,1",
+				    true,
+				    $temp_info,
+				    false
+				);
 									
-					$toolbars = array_keys( $this->toolbars );
+				$toolbars = array_keys( $this->toolbars );
 					
-					$fields = array(
-						'editor'	=> "ckeditor",
-						'skin'		=> $this->skins[0],		// first entry
-						'menu'		=> $toolbars[0],		// first entry
-						'width'		=> $this->default_width,
-						'height'	=> $this->default_height
-					);
-					
-					$db_handle->query( 
-						$db_handle->build_mysql_query(
-							'INSERT',
-							TABLE_PREFIX."mod_wysiwyg_admin",
-							$fields
-						)
-					);
-				}
+				$fields = array(
+					'editor'	=> "ckeditor",
+					'skin'		=> $this->skins[0],		// first entry
+					'menu'		=> $toolbars[0],		// first entry
+					'width'		=> $this->default_width,
+					'height'	=> $this->default_height
+				);
+                
+                if( 0 === count($temp_info))
+                {
+                    $db_handle->build_and_execute( 'insert', $table, $fields );
+                    
+                } else {
+                
+                    $db_handle->build_and_execute( 'update', $table, $fields, "`id`=".$temp_info['id'] );                
+                }
 			}
 			
 			$this->__init_droplets( $db_handle );
@@ -207,11 +212,11 @@ class editorinfo_CKEDITOR
 	}
 	
 	/**
-	 *	CK-Editor 4 comes up within a "shy"-entitie plug in that works
+	 *	CK-Editor 4 comes up within a "shy"-entitie plug-in which work
 	 *	together within a droplet.
 	 */
 	private function __init_droplets ( &$db_handle ) {
-		$droplet_name = "-"; // !
+		$droplet_name = "-"; // sic!
 		$droplet_desc = "Adds a shy-entity.";
 		$droplet_code = "return \"&shy;\";";
 		$droplet_comment = "Adds a shy-entity. Used e.g. by the CK-Editor.";
@@ -221,30 +226,33 @@ class editorinfo_CKEDITOR
 		$ignore = TABLE_PREFIX;
 		$all_tables = $db_handle->list_tables( $ignore );
 		
-		if (true == in_array( $table, $all_tables)) {
-			$query = "SELECT `name` from `".TABLE_PREFIX.$table."` where `name`='".$droplet_name."'";
-			$result = $db_handle->query( $query );
-			if ($result) {
-				if ($result->numRows() == 0) {
+		if (true == in_array( $table, $all_tables))
+		{
+			$temp_info = array();
+			$db_handle->execute_query(
+			    "SELECT `name` from `".TABLE_PREFIX.$table."` where `name`='".$droplet_name."'",
+			    true,
+			    $temp_info,
+			    false
+			);
+
+            if ( 0 === count($temp_info) )
+            {
+                $fields = array(
+					'name'	=> $droplet_name,
+					'description'	=> $droplet_desc,
+					'code' => $droplet_code,
+					'active' => 1,
+					'modified_when' => TIME(),
+					'modified_by'	=> 1,
+					'comments' => $droplet_comment
+				);
 					
-					$fields = array(
-						'name'	=> $droplet_name,
-						'description'	=> $droplet_desc,
-						'code' => $droplet_code,
-						'active' => 1,
-						'modified_when' => TIME(),
-						'modified_by'	=> 1,
-						'comments' => $droplet_comment
-					);
-					
-					$db_handle->query(
-						$db_handle->build_mysql_query(
-							'INSERT',
-							TABLE_PREFIX.$table,
-							$fields
-						)
-					);						
-				}
+				$db_handle->build_and_execute(
+                    'INSERT',
+                    TABLE_PREFIX.$table,
+                    $fields
+                );
 			}
 		}
 	}
