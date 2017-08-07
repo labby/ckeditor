@@ -17,7 +17,7 @@ global $lepton_filemanager;
 if (!is_object($lepton_filemanager)) require_once( "../../../../../framework/class.lepton.filemanager.php" );
 
 $files_to_register = array(
-	'modules/ckeditor_4/ckeditor/plugins/droplets/droplets.php'
+	'modules/ckeditor/ckeditor/plugins/droplets/droplets.php'
 );
 
 $lepton_filemanager->register( $files_to_register );

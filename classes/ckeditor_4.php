@@ -1,6 +1,6 @@
 <?php
 
-class ckeditor_4
+class ckeditor
 {
 
 	/**

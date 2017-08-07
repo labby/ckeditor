@@ -33,7 +33,7 @@ if (defined('LEPTON_PATH')) {
  
 require_once( dirname(__FILE__)."/class.editorinfo.php");
 
-$ck_info = new editorinfo_CKEDITOR_4();
+$ck_info = new editorinfo_CKEDITOR();
 $ck_info->wysiwyg_admin_init( $database );
 
 ?>

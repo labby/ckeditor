@@ -13,7 +13,7 @@
 /**
  *	Class for the wysiwyg-admin.
  */ 
-class editorinfo_CKEDITOR_4
+class editorinfo_CKEDITOR
 {
 
 	/**
@@ -178,14 +178,14 @@ class editorinfo_CKEDITOR_4
 				
 				$table = TABLE_PREFIX."mod_wysiwyg_admin";
 				
-				$query = "SELECT `id`,`skin`,`menu`,`height`,`width` from `".$table."` where `editor`='ckeditor_4' limit 0,1";
+				$query = "SELECT `id`,`skin`,`menu`,`height`,`width` from `".$table."` where `editor`='ckeditor' limit 0,1";
 				$result = $db_handle->query ($query );
 				if ($result->numRows() == 0) {
 									
 					$toolbars = array_keys( $this->toolbars );
 					
 					$fields = array(
-						'editor'	=> "ckeditor_4",
+						'editor'	=> "ckeditor",
 						'skin'		=> $this->skins[0],		// first entry
 						'menu'		=> $toolbars[0],		// first entry
 						'width'		=> $this->default_width,

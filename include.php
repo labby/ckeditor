@@ -32,19 +32,19 @@ if (defined('LEPTON_PATH')) {
 // end include class.secure.php
 
 
-$ckeditor = new ckeditor_4( $database );
+$ckeditor = new ckeditor( $database );
 
 /**
  *	Absolute path to the ck-editor basic script.
  *
  */
-$ckeditor->ckeditor_file = LEPTON_URL."/modules/ckeditor_4/ckeditor/ckeditor.js";
+$ckeditor->ckeditor_file = LEPTON_URL."/modules/ckeditor/ckeditor/ckeditor.js";
 
 /**
  *	Custom config-file
  *
  */
-$ckeditor->config['customConfig'] = LEPTON_URL."/modules/ckeditor_4/config/ckconfig.js";
+$ckeditor->config['customConfig'] = LEPTON_URL."/modules/ckeditor/config/ckconfig.js";
  
 /**
  *	Language
@@ -73,7 +73,7 @@ $ckeditor->config['entities_latin'] = false;
  *	Getting skin and toolbar (-def.) from class.editorinfo 
  */
 require_once( dirname(__FILE__)."/class.editorinfo.php" );
-$ck_info = new editorinfo_CKEDITOR_4();
+$ck_info = new editorinfo_CKEDITOR();
 
 if (true === $ckeditor->wysiwyg_admin) {
 	

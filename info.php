@@ -28,8 +28,8 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-$module_directory	= 'ckeditor_4';
-$module_name		= 'CKEditor-4';
+$module_directory	= 'ckeditor';
+$module_name		= 'CKEditor';
 $module_function	= 'WYSIWYG';
 $module_version		= '4.7.1.1';
 $module_platform	= '2.x';
@@ -42,7 +42,7 @@ $module_home		= 'http://cms-lab.com';
 
 /**
  *	Detailed changelog: see the commits on github at
- *	https://github.com/labby/ckeditor_4/commits/master
+ *	https://github.com/labby/ckeditor/commits/master
  *
  */
 ?>
