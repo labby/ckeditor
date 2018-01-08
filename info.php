@@ -31,8 +31,8 @@ if (defined('LEPTON_PATH')) {
 $module_directory	= 'ckeditor';
 $module_name		= 'CKEditor';
 $module_function	= 'WYSIWYG';
-$module_version		= '4.8.0.0';
-$module_platform	= '2.x';
+$module_version		= '5.0.0.0'; // alpha 2
+$module_platform	= '3.x';
 $module_author		= 'erpe, Dietrich Roland Pehlke (Aldus)';
 $module_license		= '<a target="_blank" href="http://www.gnu.org/licenses/lgpl.html">LGPL</a>';
 $module_license_terms = '-';
