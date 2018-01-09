@@ -1,0 +1,15 @@
+{% autoescape false %}
+<!-- Load cke -->
+<link rel="stylesheet" type="text/css" href="{{ backend_css }}" media="all">
+<script type="text/javascript" src="{{ cke_url }}/ckeditor.js"></script>
+<script type="text/javascript">
+
+ClassicEditor
+    .create( document.querySelector( 'content45' ) )
+    .catch( error => {
+        console.error( error );
+    } );
+
+</script>
+<!-- /cke -->
+{% endautoescape %}

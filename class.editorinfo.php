@@ -4,7 +4,7 @@
  *	@module			ckeditor
  *	@version		see info.php of this module
  *	@authors		Dietrich Roland Pehlke, erpe
- *	@copyright		2012-2017 Dietrich Roland Pehlke, erpe
+ *	@copyright		2012-2018 Dietrich Roland Pehlke, erpe
  *	@license		GNU General Public License
  *	@license terms	see info.php of this module
  *
@@ -29,12 +29,21 @@ class editorinfo_CKEDITOR
 	/**
 	 *	@var	string	Holds the current version of this class.
 	 */
-	protected $version	= "4.7.1.2.0";
+	protected $version	= "5.0.0.0";
 
 	/**
 	 *	@var	string	Holds the (last) author of this class.
 	 */
 	protected $author	= "Dietrich Roland Pehlke (Aldus)";
+
+	/**
+	 *	@var	array	Holds the supported skins of this wysiwyg-editor.
+	 */
+	public $type = array(
+		'ClassicEditor',
+		'InlineEditor',
+		'BalloonEditor'
+	);
 	
 	/**
 	 *	@var	array	Holds the supported skins of this wysiwyg-editor.

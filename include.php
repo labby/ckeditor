@@ -4,23 +4,21 @@
  *	@module			ckeditor
  *	@version		see info.php of this module
  *	@authors		Dietrich Roland Pehlke, erpe
- *	@copyright		2012-2017 Dietrich Roland Pehlke, erpe
+ *	@copyright		2012-2018 Dietrich Roland Pehlke, erpe
  *	@license		GNU General Public License
  *	@license terms	see info.php of this module
  *
  */
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL|E_STRICT);
-
 // include class.secure.php to protect this file and the whole CMS!
 if (defined('LEPTON_PATH')) {	
 	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
-	$root = "../";
+	$oneback = "../";
+	$root = $oneback;
 	$level = 1;
 	while (($level < 10) && (!file_exists($root.'/framework/class.secure.php'))) {
-		$root .= "../";
+		$root .= $oneback;
 		$level += 1;
 	}
 	if (file_exists($root.'/framework/class.secure.php')) { 
@@ -31,138 +29,227 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
+global $id_list;
+global $database;
 
-$ckeditor = new ckeditor( $database );
-
-/**
- *	Absolute path to the ck-editor basic script.
- *
- */
-$ckeditor->ckeditor_file = LEPTON_URL."/modules/ckeditor/ckeditor/ckeditor.js";
 
 /**
- *	Custom config-file
- *
+ *	returns the template name of the current displayed page
+ * 
+ *	@param string	A path to the editor.css - if there is one. Default is an empty string. Pass by reference!
+ *	@return STR $tiny_template_dir
  */
-$ckeditor->config['customConfig'] = LEPTON_URL."/modules/ckeditor/config/ckconfig.js";
- 
-/**
- *	Language
- *
- */
-$ckeditor->config['language'] = strtolower( LANGUAGE );
-
-/**
- *	Load the frontend css
- *
- */
-$ckeditor->config['contentsCss'] = $ckeditor->resolve_path();
-
-/**
- *	Add extra plug-ins.
- */
-$ckeditor->config['extraPlugins'] = 'droplets,pagelink,shybutton,justify,colorbutton';
-
-/**
- *	Try to force the ckeditor not to use entities!
- */
-$ckeditor->config['entities_latin'] = false;
-
-/**	*******************************************
- *	First steps for WYSIWYG-Admin support.
- *	Getting skin and toolbar (-def.) from class.editorinfo 
- */
-require_once( dirname(__FILE__)."/class.editorinfo.php" );
-$ck_info = new editorinfo_CKEDITOR();
-
-if (true === $ckeditor->wysiwyg_admin) {
+function get_template_name( &$css_path = "") {
+	global $database;
 	
-	/**
-	 *	Get WYSIWYG-Admin information
-	 *
-	 *
-	 */
-	$wysiwyg_info = array();
-	$database->execute_query(
-		"SELECT `skin`,`menu`,`width`,`height` FROM `".TABLE_PREFIX."mod_wysiwyg_admin` WHERE `editor` = '".WYSIWYG_EDITOR."'",
-		true,
-		$wysiwyg_info,
-		false
+	$lookup_paths = array(
+		'/css/editor.css',
+		'/editor.css'
 	);
 	
-	/**
-	 *	Skin
-	 *	Possibilities are 'moono', 'moonocolor' or 'moono-lisa'.
-	 */
-	$ckeditor->config['skin'] = $wysiwyg_info['skin'];
+	$cke_template_dir = "none";
 
 	/**
-	 *	Toolbar
-	 *	Possibilities: 'Full', 'Smart', 'Simple'.
-	 *	See class.editorinfo.php for details or other toolbars.
-	 */
-	$ckeditor->config['toolbar'] = $ck_info->toolbars[ $wysiwyg_info['menu'] ];
-
-	/**
-	 *	Height and width
+	 *	Looking up for an editor.css file
 	 *
 	 */
-	$ckeditor->config['width'] = $wysiwyg_info['width'];
-	$ckeditor->config['height'] = $wysiwyg_info['height'];
-}
-/**	*********************************
- *	End of WYSIWYG-Admin support here
- *
- */
-	 
+	foreach($lookup_paths as $temp_path) {
+		if (file_exists(LEPTON_PATH .'/templates/' .DEFAULT_TEMPLATE .$temp_path ) ) {
+			$css_path = $temp_path; // keep in mind, that this one is pass_by_reference
+			$cke_template_dir = DEFAULT_TEMPLATE;
+			break;
+		}
+	}
+		
+	// check if a editor.css file exists in the specified template directory of current page
+	if (isset($_GET["page_id"]) && ((int) $_GET["page_id"] > 0)) {
+		$pageid = (int) $_GET["page_id"];
+		// obtain template folder of current page from the database
+		$query_page = "SELECT `template` FROM `" .TABLE_PREFIX ."pages` WHERE `page_id`='".$pageid."'";
+		$pagetpl = $database->get_one($query_page);
+		
+		/**
+		 *	check if a specific template is defined for current page
+		 *
+		 */
+		if (isset($pagetpl) && ($pagetpl != '')) {	
+			/**
+			 *	check if a specify editor.css file is contained in that folder
+			 *
+			 */
+			foreach($lookup_paths as $temp_path) {
+				if (file_exists(LEPTON_PATH.'/templates/'.$pagetpl.$temp_path)) {
+					$css_path = $temp_path; // keep in mind, that this one is pass_by_reference
+					$cke_template_dir = $pagetpl;
+					break;
+				}
+			}
+		}
+	}
+	return $cke_template_dir;
+} // get_template_name()
+
+
 /**
- *	The filebrowser are called in the include, because later on we can make switches, use LEPTON_URL and so on
+ * Initialize CKE and create an textarea
+ * 
+ * @param STR $name		Name of the textarea.
+ * @param STR $id		Id of the textarea.
+ * @param STR $content	The content to edit.
+ * @param INT $width	The width of the editor, overwritten by wysiwyg-admin.
+ * @param INT $height	The height of the editor, overwritten by wysiwyg-admin.
+ * @param BOOL $prompt	Direct output to the client via echo (true) or returnd as HTML-textarea (false)?
+ * @return MIXED		Could be a BOOL or STR (textarea-tags).
  *
  */
-
-// [4]	Looking for the repositive filemanager
-$temp_path = LEPTON_PATH."/modules/lib_r_filemanager/library.php";
-if(!file_exists($temp_path))
-{
-die('WARNING: You need lib_r_filemanager to run this release of CKEditor!');
-}
-
-// [4.1] Include the library.php first for internal initialisation of the reposotive filemanager.
-require_once $temp_path;
+function show_wysiwyg_editor( $name, $id, $content, $width=NULL, $height=NULL, $prompt=true) {
+	global $id_list;
+	global $database;
+	global $parser;		// twig parser
+	global $loader;		// twig file manager
 	
-// [4.2] Aldus: keep in mind that we have to use absolute paths to the repositive filemanager here!
-$temp_path = str_replace( LEPTON_PATH, LEPTON_URL, dirname($temp_path) );
-	
-// [4.3] Aldus: keep in mind that $akey is declared inside the library.php of the repositive filemanager! 
-$ckeditor->config['filebrowserBrowseUrl'] = $temp_path.'/filemanager/dialog.php?type=2&editor=ckeditor&&akey='.$akey;
-$ckeditor->config['filebrowserUploadUrl'] = $temp_path.'/filemanager/dialog.php?type=2&editor=ckeditor&&akey='.$akey;
-$ckeditor->config['filebrowserImageBrowseUrl'] = $temp_path.'/filemanager/dialog.php?type=1&&editor=ckeditor&akey='.$akey;
+	/**
+	 *	0.1	Get Twig
+	 */
+	if (!is_object($parser)) require_once( LEPTON_PATH."/modules/lib_twig/library.php" );
 
-/**
- *	Function called by parent, default by the wysiwyg-module
- *	
- *	@param	string	The name of the textarea to watch
- *	@param	mixed	The "id" - some other modules handel this param differ
- *	@param	string	Optional the width, default "100%" of given space.
- *	@param	string	Optional the height of the editor - default is '250px'
- *
- */
-function show_wysiwyg_editor($name, $id, $content, $width = '100%', $height = '250px', $prompt = true) {
-	global $ckeditor;
+	// prependpath to make sure twig is looking in this module template folder first
+	$loader->prependPath( dirname(__FILE__)."/templates/" );
 	
-	if (true === $ckeditor->force) {
-		$ckeditor->config['width'] = $width;		// -> overwrite WYSIWYG-Admin settings
-		$ckeditor->config['height'] = $height;		// -> overwrite WYSIWYG-Admin settings
+	/**
+	 *	0.2 Get the "defaults" from the editorinfo.php
+	 *
+	 */
+	require_once( dirname(__FILE__)."/class.editorinfo.php" );
+	$oCKE_info = new editorinfo_CKEDITOR();
+	
+	$toolbar = $oCKE_info->toolbars[ $oCKE_info->default_toolbar ];
+	$skin = $oCKE_info->default_skin;
+
+	if( $width === NULL ) $width = $oCKE_info->default_width;
+	if( $height === NULL ) $height = $oCKE_info->default_height;
+		
+	/**	*****
+	 *	1. CKE main script part
+	 *
+	 */
+
+	/**
+	 *	make sure that the script-part is only load/generated once
+	 *
+	 */
+	if (!defined("cke_loaded")) {
+		
+		define("cke_loaded", true);
+
+		$cke_url = LEPTON_URL."/modules/ckeditor/ckeditor";
+		
+		$temp_css_path = "/editor.css";
+		$template_name = get_template_name( $temp_css_path );
+		
+		/**
+		 *	If editor.css file exists in default template folder or template folder of current page
+		 *  See: http://www.tinymce.com/wiki.php/Configuration:content_css
+		 */
+		$css_file = '"'.LEPTON_URL .'/templates/' .$template_name .$temp_css_path.'"';
+		
+		if ( !file_exists (LEPTON_PATH .'/templates/' .$template_name .$temp_css_path) ) 
+		{
+			$css_file = "''";
+		}
+		
+		/**
+		 *	If backend.css file exists in default theme folder overwrite module backend.css
+		 */
+		$backend_css = LEPTON_URL.'/templates/'.DEFAULT_THEME.'/backend/ckeditor/backend.css';
+		if(!file_exists(LEPTON_PATH.'/templates/'.DEFAULT_THEME.'/backend/ckeditor/backend.css')) {
+			$backend_css = LEPTON_URL.'/modules/ckeditor/css/backend.css';
+		}
+		 
+		
+		/**
+		 *	Include language file
+		 *	If the file is not found (local) we use an empty string,
+		 *	TinyMCE will use english as the defaut language in this case.
+		 */
+		$lang = strtolower( LANGUAGE );
+		$language = (file_exists( dirname(__FILE__)."/tinymce/langs/". $lang .".js" )) ? $lang	: "";
+    
+		/**
+		 *	Get wysiwyg-admin information for this editor.
+		 *
+		 */
+		$strip = TABLE_PREFIX;
+		$all_tables= $database->list_tables( $strip  );
+		if (in_array("mod_wysiwyg_admin", $all_tables)) {
+			$wysiwyg_admin_editor_settings = array();
+			$database->execute_query(
+				"SELECT `skin`, `menu`,`width`,`height` from `".TABLE_PREFIX."mod_wysiwyg_admin` where `editor` ='ckeditor'",
+				true,
+				$wysiwyg_admin_editor_settings,
+				false
+			);
+			if (count($wysiwyg_admin_editor_settings) > 0) {
+				$width = $wysiwyg_admin_editor_settings['width'];
+				$height = $wysiwyg_admin_editor_settings['height'];
+//				$skin = $wysiwyg_admin_editor_settings['skin'];
+				$toolbar = $oCKE_info->toolbars[ $wysiwyg_admin_editor_settings['menu'] ];
+			}
+		}
+
+// define filemanager url and access keys
+$filemanager_url = LEPTON_URL."/modules/lib_r_filemanager";
+$akey = password_hash( LEPTON_GUID, PASSWORD_DEFAULT);
+$akey = str_replace(array('$','/'),'',$akey);
+$akey = substr($akey, -30);	
+$_SESSION['rfkey'] = $akey;
+		
+		$data = array(
+			'filemanager_url'=> $filemanager_url,
+			'LEPTON_URL'	=> LEPTON_URL,
+			'ACCESS_KEY'	=> $akey,			
+			'cke_url'		=> $cke_url,
+			'backend_css'	=> $backend_css,			
+			'selector'		=> 'textarea[id!=no_wysiwyg]',
+			'language'		=> $language,      
+			'width'		=> $width,
+			'height'	=> $height,
+			'css_file'	=> $css_file,
+			'toolbar'	=> $toolbar,
+			'skin'		=> $skin
+		);
+		
+		echo $parser->render( 
+			"ckeditor.lte",	//	template-filename
+			$data			//	template-data
+		);
 	}
 	
-	$ckeditor->config['id'] = $id;
-	$ckeditor->config['name'] = $name;
-	$ckeditor->config['content'] = $content;
+	/**	*****
+	 *	2. textarea part
+	 *
+	 */
+	 	
+	//	values for the textarea
+	$data = array(
+		'id'		=> $id,
+		'name'		=> $name,
+		'content'	=> htmlspecialchars_decode( $content ),
+		'width'		=> $width,
+		'height'	=> $height
+	);
+
+	$result = $parser->render(
+		'textarea.lte',	// template-filename
+		$data			// template-data
+	);
 	
-	if(true === $prompt) {
-		echo $ckeditor->toHTML();
-	} else {
-		return $ckeditor->toHTML();
+	if ($prompt) {
+		echo $result;
+		return true;
 	}
-}
+	return $result;
+
+} // show_wysiwyg_editor()
+
 ?>

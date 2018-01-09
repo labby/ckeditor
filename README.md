@@ -18,8 +18,10 @@ This project is the implementation of the CK-Editor to LEPTON CMS.
 After installing addon you are done. <br />
 Create a new page with this addon.
 
+#### Changelog
 
+see commits on github at https://github.com/labby/ckeditor/commits/master
 
 [1]: http://lepton-cms.org "LEPTON CMS"
-[2]: http://www.lepton-cms.com/lepador/editors/ck-editor-4series.php
+[2]: http://www.lepton-cms.com/lepador/editors/ck-editor-5series.php
 
