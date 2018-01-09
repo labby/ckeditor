@@ -119,7 +119,7 @@ function show_wysiwyg_editor( $name, $id, $content, $width=NULL, $height=NULL, $
 	/**
 	 *	0.2 Get the "defaults" from the editorinfo.php
 	 *
-	 */
+
 	require_once( dirname(__FILE__)."/class.editorinfo.php" );
 	$oCKE_info = new editorinfo_CKEDITOR();
 	
@@ -128,7 +128,7 @@ function show_wysiwyg_editor( $name, $id, $content, $width=NULL, $height=NULL, $
 
 	if( $width === NULL ) $width = $oCKE_info->default_width;
 	if( $height === NULL ) $height = $oCKE_info->default_height;
-		
+		 */	
 	/**	*****
 	 *	1. CKE main script part
 	 *
@@ -193,7 +193,7 @@ function show_wysiwyg_editor( $name, $id, $content, $width=NULL, $height=NULL, $
 				$width = $wysiwyg_admin_editor_settings['width'];
 				$height = $wysiwyg_admin_editor_settings['height'];
 //				$skin = $wysiwyg_admin_editor_settings['skin'];
-				$toolbar = $oCKE_info->toolbars[ $wysiwyg_admin_editor_settings['menu'] ];
+//				$toolbar = $oCKE_info->toolbars[ $wysiwyg_admin_editor_settings['menu'] ];
 			}
 		}
 
@@ -215,8 +215,9 @@ $_SESSION['rfkey'] = $akey;
 			'width'		=> $width,
 			'height'	=> $height,
 			'css_file'	=> $css_file,
-			'toolbar'	=> $toolbar,
-			'skin'		=> $skin
+			'id'	=> $id,
+//			'toolbar'	=> $toolbar,
+//			'skin'		=> $skin
 		);
 		
 		echo $parser->render( 
