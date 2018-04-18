@@ -4,7 +4,7 @@
  *	@module			ckeditor
  *	@version		see info.php of this module
  *	@authors		Dietrich Roland Pehlke, erpe
- *	@copyright		2012-2017 Dietrich Roland Pehlke, erpe
+ *	@copyright		2012-2018 Dietrich Roland Pehlke, erpe
  *	@license		GNU General Public License
  *	@license terms	see info.php of this module
  *
@@ -31,8 +31,8 @@ if (defined('LEPTON_PATH')) {
 $module_directory	= 'ckeditor';
 $module_name		= 'CKEditor';
 $module_function	= 'WYSIWYG';
-$module_version		= '4.9.0.0';
-$module_platform	= '2.x';
+$module_version		= '4.9.0.1';
+$module_platform	= '3.x';
 $module_author		= 'erpe, Dietrich Roland Pehlke (Aldus)';
 $module_license		= '<a target="_blank" href="http://www.gnu.org/licenses/lgpl.html">LGPL</a>';
 $module_license_terms = '-';

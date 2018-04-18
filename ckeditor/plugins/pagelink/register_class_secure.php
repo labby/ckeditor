@@ -18,6 +18,15 @@ $files_to_register = array(
 	'modules/ckeditor/ckeditor/plugins/pagelink/pages.php'
 );
 
-LEPTON_secure::getInstance()->accessFiles( $files_to_register );
+if(class_exists("LEPTON_secure", true))
+{
+    //  LEPTON IV
+    LEPTON_secure::getInstance()->accessFiles( $files_to_register );
 
+} else {
+    //  LEPTON III
+    global $lepton_filemanager;
+    if (!is_object($lepton_filemanager)) require_once( "../../../../../framework/class.lepton.filemanager.php" );
+    $lepton_filemanager->register( $files_to_register );
+}
 ?>
