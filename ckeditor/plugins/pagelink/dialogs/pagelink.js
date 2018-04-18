@@ -373,7 +373,7 @@ CKEDITOR.dialog.add( 'pagelink', function( editor ) {
 						label: linkLang.wbPage,
 						items:InternPagesSelectBox,
 						onChange : function() {
-							pageId = this.getValue().match(/\[pagelink(\d*)\]/);
+							pageId = this.getValue().match(/\[wblink(\d*)\]/);
 							sel = this.getDialog().getContentElement( 'info', 'newslink');
 							sel.clear();
 							if (NewsItemsSelectBox[pageId[1]]) {
