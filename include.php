@@ -107,7 +107,7 @@ if (true === $ckeditor->wysiwyg_admin) {
 	 *	Height and width
 	 *
 	 */
-	$ckeditor->config['width'] = $wysiwyg_info['width'];
+	$ckeditor->config['width'] = $wysiwyg_info['width']."%";
 	$ckeditor->config['height'] = $wysiwyg_info['height'];
 }
 /**	*********************************
@@ -124,7 +124,7 @@ if (true === $ckeditor->wysiwyg_admin) {
 $temp_path = LEPTON_PATH."/modules/lib_r_filemanager/library.php";
 if(!file_exists($temp_path))
 {
-die('WARNING: You need lib_r_filemanager to run this release of CKEditor!');
+    die('WARNING: You need lib_r_filemanager to run this release of CKEditor!');
 }
 
 // [4.1] Include the library.php first for internal initialisation of the reposotive filemanager.
@@ -137,6 +137,9 @@ $temp_path = str_replace( LEPTON_PATH, LEPTON_URL, dirname($temp_path) );
 $ckeditor->config['filebrowserBrowseUrl'] = $temp_path.'/filemanager/dialog.php?type=2&editor=ckeditor&&akey='.$akey;
 $ckeditor->config['filebrowserUploadUrl'] = $temp_path.'/filemanager/dialog.php?type=2&editor=ckeditor&&akey='.$akey;
 $ckeditor->config['filebrowserImageBrowseUrl'] = $temp_path.'/filemanager/dialog.php?type=1&&editor=ckeditor&akey='.$akey;
+
+$ckeditor->config['cloudServices_tokenUrl'] = LEPTON_URL; // 'https://example.com/cs-token-endpoint';
+$ckeditor->config['cloudServices_uploadUrl'] = LEPTON_URL.MEDIA_DIRECTORY; //'https://your-organization-id.cke-cs.com/easyimage/upload/';
 
 /**
  *	Function called by parent, default by the wysiwyg-module

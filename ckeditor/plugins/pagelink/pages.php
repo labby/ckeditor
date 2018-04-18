@@ -39,8 +39,13 @@ if (defined('LEPTON_PATH')) {
 // end include class.secure.php
 
 // Create new admin object
-require(LEPTON_PATH.'/framework/class.admin.php');
-$admin = new admin('Pages', 'pages_modify', false, false);
+if(file_exists(LEPTON_PATH.'/framework/class.admin.php'))
+{
+    require(LEPTON_PATH.'/framework/class.admin.php');
+    $admin = new admin('Pages', 'pages_modify', false, false);
+} else {
+    $admin = LEPTON_admin::getInstance('Pages', 'pages_modify', false, false);
+}
 
 if(!function_exists('cleanup')) {
 
