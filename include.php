@@ -63,6 +63,8 @@ $ckeditor->config['contentsCss'] = $ckeditor->resolve_path();
  */
 $ckeditor->config['extraPlugins'] = 'droplets,pagelink,shybutton,justify,colorbutton';
 
+$ckeditor->config['removePlugins'] = 'easyimage, cloudservices';
+
 /**
  *	Try to force the ckeditor not to use entities!
  */
@@ -138,8 +140,8 @@ $ckeditor->config['filebrowserBrowseUrl'] = $temp_path.'/filemanager/dialog.php?
 $ckeditor->config['filebrowserUploadUrl'] = $temp_path.'/filemanager/dialog.php?type=2&editor=ckeditor&&akey='.$akey;
 $ckeditor->config['filebrowserImageBrowseUrl'] = $temp_path.'/filemanager/dialog.php?type=1&&editor=ckeditor&akey='.$akey;
 
-$ckeditor->config['cloudServices_tokenUrl'] = LEPTON_URL; // 'https://example.com/cs-token-endpoint';
-$ckeditor->config['cloudServices_uploadUrl'] = LEPTON_URL.MEDIA_DIRECTORY; //'https://your-organization-id.cke-cs.com/easyimage/upload/';
+$ckeditor->config['cloudServices_tokenUrl'] = ""; // LEPTON_URL; // 'https://example.com/cs-token-endpoint';
+$ckeditor->config['cloudServices_uploadUrl'] = ""; // LEPTON_URL.MEDIA_DIRECTORY; //'https://your-organization-id.cke-cs.com/easyimage/upload/';
 
 /**
  *	Function called by parent, default by the wysiwyg-module

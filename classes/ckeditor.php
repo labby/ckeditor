@@ -222,7 +222,17 @@ class ckeditor
 		if (strtoupper(substr($val, 0, 9)) == 'CKEDITOR.')
 			return $val;
 
-		return '"' . str_replace(array("\\", "/", "\n", "\t", "\r", "\x08", "\x0c", '"'), array('\\\\', '\\/', '\\n', '\\t', '\\r', '\\b', '\\f', '\"'), $val) . '"';
+        $aChars = array(
+            "\\"    => '\\\\',
+            "/"     => '\\/',
+            "\n"    => '\\n',
+            "\t"    => '\\t',
+            "\r"    => '\\r',
+            "\x08"  => '\\b',
+            "\x0c"  => '\\f',
+            '"'     => '\"'
+        );
+		return '"' . str_replace( array_keys( $aChars ), array_values( $aChars ), $val) . '"';
 	}
 	
 	/**
