@@ -1,5 +1,15 @@
 <?php
 
+/**
+ *	@module			ckeditor
+ *	@version		see info.php of this module
+ *	@authors		Dietrich Roland Pehlke, erpe
+ *	@copyright		2012-2018 Dietrich Roland Pehlke, erpe
+ *	@license		GNU General Public License
+ *	@license terms	see info.php of this module
+ *
+ */
+
 class ckeditor
 {
 
@@ -269,7 +279,7 @@ class ckeditor
 	}
 
     /**
-     *  coerce a given format with a valid value, if non given "%" is used.
+     *  Coerce a given format with a valid value, if non given "%" is used.
      *
      *  @param  string  sValue  Any given value-string.
      *  @return string  The coerced value string.
@@ -277,6 +287,8 @@ class ckeditor
      */
     public function coerceFormat( $sValue )
     {   
+        $sValue = trim( $sValue );
+        
         if(preg_match('/%|px|em|pt|mm$/i',$sValue))
         {
             return $sValue;
