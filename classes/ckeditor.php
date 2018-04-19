@@ -268,4 +268,20 @@ class ckeditor
 		return "";
 	}
 
+    /**
+     *  coerce a given format with a valid value, if non given "%" is used.
+     *
+     *  @param  string  sValue  Any given value-string.
+     *  @return string  The coerced value string.
+     *
+     */
+    public function coerceFormat( $sValue )
+    {   
+        if(preg_match('/%|px|em|pt|mm$/i',$sValue))
+        {
+            return $sValue;
+        } else {
+            return intval( $sValue )."%";   
+        }
+    }
 }

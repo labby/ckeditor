@@ -109,7 +109,7 @@ if (true === $ckeditor->wysiwyg_admin) {
 	 *	Height and width
 	 *
 	 */
-	$ckeditor->config['width'] = $wysiwyg_info['width']."%";
+	$ckeditor->config['width'] = $ckeditor->coerceFormat( $wysiwyg_info['width'] );
 	$ckeditor->config['height'] = $wysiwyg_info['height'];
 }
 /**	*********************************
@@ -156,7 +156,7 @@ function show_wysiwyg_editor($name, $id, $content, $width = '100%', $height = '2
 	global $ckeditor;
 	
 	if (true === $ckeditor->force) {
-		$ckeditor->config['width'] = $width;		// -> overwrite WYSIWYG-Admin settings
+		$ckeditor->config['width'] = $ckeditor->coerceFormat( $width );		// -> overwrite WYSIWYG-Admin settings
 		$ckeditor->config['height'] = $height;		// -> overwrite WYSIWYG-Admin settings
 	}
 	
